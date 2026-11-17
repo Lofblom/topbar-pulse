@@ -19,6 +19,11 @@ No other software is needed beyond what a normal GNOME install already has
 
 <sub>Screenshots use example network data (documentation IP ranges, a demo Wi-Fi name and password); system and AI values are live. Regenerate with `tools/screenshots.sh`.</sub>
 
+**Privacy at a glance:** no telemetry, no account, nothing sent to the
+author. Subscription limits are off until you turn them on; sign-ins are
+never stored and only go to the provider's own HTTPS address. Details in
+[Privacy and sign-ins](#privacy-and-sign-ins).
+
 ## What it shows
 
 **System monitor** — CPU, GPU, RAM and temperature in the bar (as text,
@@ -86,6 +91,12 @@ sees the sign-in at all: the Codex CLI's own app-server makes the request.
 public APIs. They are what the official tools use themselves; they may
 change or stop working without notice, and they are used at your own
 discretion. That is why these readers are off by default.
+
+**Check it yourself.** Like every GNOME Shell extension, Topbar Pulse runs
+inside GNOME Shell with your user's rights. All code that touches sign-ins
+is in two short files: [`src/lib/ai/usage.js`](src/lib/ai/usage.js) (which
+file or command each reader uses and which host it asks) and
+[`src/lib/http.js`](src/lib/http.js) (HTTPS only, no redirects).
 
 ## Install
 
