@@ -572,8 +572,8 @@ msgstr "DNS personalizado"
 msgid "Servers for the “Custom” choice in the DNS menu, separated by spaces. IPv4 and IPv6 both work."
 msgstr "Servidores para la opción «Personalizado» del menú DNS, separados por espacios. Funcionan IPv4 e IPv6."
 
-msgid "Download from a public test server, upload to Cloudflare. Runs only when you press the button."
-msgstr "Descarga desde un servidor de pruebas público y subida a Cloudflare. Solo se ejecuta al pulsar el botón."
+msgid "Downloads from the server you pick and uploads to Tele2’s public test server. Runs only when you press the button."
+msgstr "Descarga desde el servidor que elijas y sube al servidor de pruebas público de Tele2. Solo se ejecuta al pulsar el botón."
 
 msgid "Server"
 msgstr "Servidor"

@@ -139,7 +139,51 @@ async function runDemo(ext, dir) {
     await shoot(`${dir}/prefs.png`);
 }
 
+// ---- network actions (TOPBAR_PULSE_NETTEST=1): really switch DNS and
+// Wi-Fi band through the indicator's own code, check with nmcli, restore.
+async function runNetTest(ext) {
+    const {run: sh} = await import('./util.js');
+    const net = ext._indicators.network;
+    const log = m => console.log(`topbar-pulse nettest: ${m}`);
+    const nm = async field => (await sh(['nmcli', '-e', 'no', '-g', field, 'connection', 'show', 'uuid', net._status.uuid])).out.trim();
+    const state = async () => {
+        net._status = net._collect();
+        const s = net._status;
+        return `freq=${s.freq} band-setting=${await nm('802-11-wireless.band') || 'auto'} ipv4.dns=[${await nm('ipv4.dns')}] ignore-auto=${await nm('ipv4.ignore-auto-dns')} active-dns=[${(s.nameservers ?? []).join(' ')}]`;
+    };
+    await wait(10000);
+    log(`start ${await state()}`);
+
+    net._setDns('cloudflare');
+    await wait(8000);
+    log(`after DNS cloudflare ${await state()}`);
+    net._setDns('auto');
+    await wait(8000);
+    log(`after DNS auto ${await state()}`);
+
+    net._setBand('5');
+    await wait(20000);
+    log(`after band 5 ${await state()}`);
+    net._setBand('auto');
+    await wait(20000);
+    log(`after band auto ${await state()}`);
+
+    await net._toggleQr();
+    log(`QR rows=${net._qrRows.length} password-found=${net._qrCaption.text.includes('\n')}`);
+}
+
 export async function run(ext, dir) {
+    if (GLib.getenv('TOPBAR_PULSE_NETTEST')) {
+        try {
+            await runNetTest(ext);
+        } catch (e) {
+            console.error(`topbar-pulse nettest: ${e.message}\n${e.stack}`);
+        } finally {
+            console.log('topbar-pulse selftest: done');
+            await shoot(`${dir}/done.png`);
+        }
+        return;
+    }
     if (GLib.getenv('TOPBAR_PULSE_DEMO')) {
         try {
             await runDemo(ext, dir);

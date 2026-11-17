@@ -20,10 +20,11 @@ export const SERVERS = {
     'hetzner-hil': {name: 'Hetzner (USA West)', down: 'https://hil-speed.hetzner.com/10GB.bin', streams: 2},
     'hetzner-sin': {name: 'Hetzner (Singapore)', down: 'https://sin-speed.hetzner.com/10GB.bin', streams: 2},
 };
-// Cloudflare's upload sink answers from the nearest data centre.
-const UPLOAD_URL = 'https://speed.cloudflare.com/__up';
+// Tele2 offers an upload target for exactly this purpose; like its
+// download it does best with a single stream.
+const UPLOAD_URL = 'http://speedtest.tele2.net/upload.php';
 
-const UPLOAD_STREAMS = 2;
+const UPLOAD_STREAMS = 1;
 const PHASE_SECONDS = 8;
 const WARMUP_SECONDS = 1.5;   // ignore TCP slow start
 const UPLOAD_CHUNK = 4 * 1024 * 1024;

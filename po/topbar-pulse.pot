@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-17 18:25+0100\n"
+"POT-Creation-Date: 2026-11-17 18:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,46 +17,46 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/lib/ai/indicator.js:29 src/prefs.js:54 src/prefs.js:76 src/prefs.js:89
+#: src/lib/ai/indicator.js:30 src/prefs.js:54 src/prefs.js:76 src/prefs.js:89
 msgid "AI"
 msgstr ""
 
-#: src/lib/ai/indicator.js:54
+#: src/lib/ai/indicator.js:55
 msgid "Show your subscription limits…"
 msgstr ""
 
-#: src/lib/ai/indicator.js:58
+#: src/lib/ai/indicator.js:59
 msgid "Open"
 msgstr ""
 
-#: src/lib/ai/indicator.js:63
+#: src/lib/ai/indicator.js:64
 msgid "Refresh"
 msgstr ""
 
-#: src/lib/ai/indicator.js:64 src/lib/network.js:139 src/lib/system.js:329
+#: src/lib/ai/indicator.js:65 src/lib/network.js:139 src/lib/system.js:331
 msgid "Topbar Pulse settings…"
 msgstr ""
 
-#: src/lib/ai/indicator.js:195
+#: src/lib/ai/indicator.js:217
 #, javascript-format
 msgid "Today: %s new tokens (%s written by Claude)"
 msgstr ""
 
-#: src/lib/ai/indicator.js:197
+#: src/lib/ai/indicator.js:219
 #, javascript-format
 msgid "+ %s re-read from cache – the conversation is sent again at every step"
 msgstr ""
 
-#: src/lib/ai/indicator.js:202
+#: src/lib/ai/indicator.js:224
 #, javascript-format
 msgid "Could not update: %s"
 msgstr ""
 
-#: src/lib/ai/indicator.js:206
+#: src/lib/ai/indicator.js:228
 msgid "Showing the last known numbers"
 msgstr ""
 
-#: src/lib/ai/indicator.js:244
+#: src/lib/ai/indicator.js:266
 #, javascript-format
 msgid "Open %s in a terminal"
 msgstr ""
@@ -123,7 +123,7 @@ msgid "Automatic"
 msgstr ""
 
 #: src/lib/network.js:70 src/lib/network.js:357 src/prefs.js:55
-#: src/prefs.js:229
+#: src/prefs.js:234
 msgid "Network"
 msgstr ""
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "DNS"
 msgstr ""
 
-#: src/lib/network.js:117 src/lib/network.js:655 src/prefs.js:259
+#: src/lib/network.js:117 src/lib/network.js:655 src/prefs.js:264
 msgid "Speed test"
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr ""
 msgid "Gateway"
 msgstr ""
 
-#: src/lib/network.js:374 src/prefs.js:252
+#: src/lib/network.js:374 src/prefs.js:257
 msgid "DNS servers"
 msgstr ""
 
@@ -372,129 +372,129 @@ msgstr ""
 msgid "Password: %s"
 msgstr ""
 
-#: src/lib/system.js:206 src/prefs.js:53 src/prefs.js:61
+#: src/lib/system.js:208 src/prefs.js:53 src/prefs.js:61
 msgid "System monitor"
 msgstr ""
 
-#: src/lib/system.js:283
+#: src/lib/system.js:285
 msgid "Processor"
 msgstr ""
 
-#: src/lib/system.js:292
+#: src/lib/system.js:294
 msgid "Graphics"
 msgstr ""
 
-#: src/lib/system.js:300
+#: src/lib/system.js:302
 msgid "Memory"
 msgstr ""
 
-#: src/lib/system.js:304
+#: src/lib/system.js:306
 msgid "Swap"
 msgstr ""
 
-#: src/lib/system.js:308
+#: src/lib/system.js:310
 msgid "Storage & network"
 msgstr ""
 
-#: src/lib/system.js:309
+#: src/lib/system.js:311
 msgid "Disk /"
 msgstr ""
 
-#: src/lib/system.js:318
+#: src/lib/system.js:320
 msgid "Sensors & power"
 msgstr ""
 
-#: src/lib/system.js:324
+#: src/lib/system.js:326
 msgid "Busiest processes"
 msgstr ""
 
-#: src/lib/system.js:324
+#: src/lib/system.js:326
 msgid "share of the whole CPU"
 msgstr ""
 
-#: src/lib/system.js:333
+#: src/lib/system.js:335
 msgid "Open system monitor"
 msgstr ""
 
-#: src/lib/system.js:475
+#: src/lib/system.js:477
 msgid "3D"
 msgstr ""
 
-#: src/lib/system.js:475
+#: src/lib/system.js:477
 msgid "Video"
 msgstr ""
 
-#: src/lib/system.js:475
+#: src/lib/system.js:477
 msgid "Video enhance"
 msgstr ""
 
-#: src/lib/system.js:475
+#: src/lib/system.js:477
 msgid "Compute"
 msgstr ""
 
-#: src/lib/system.js:475
+#: src/lib/system.js:477
 msgid "Copy"
 msgstr ""
 
-#: src/lib/system.js:556
+#: src/lib/system.js:558
 #, javascript-format
 msgid "load %s"
 msgstr ""
 
-#: src/lib/system.js:557
+#: src/lib/system.js:559
 #, javascript-format
 msgid "%s threads"
 msgstr ""
 
-#: src/lib/system.js:569
+#: src/lib/system.js:571
 #, javascript-format
 msgid "%s / %s GB used · %s GB cache"
 msgstr ""
 
-#: src/lib/system.js:586
+#: src/lib/system.js:588
 #, javascript-format
 msgid "Disk: read %s · write %s"
 msgstr ""
 
-#: src/lib/system.js:587
+#: src/lib/system.js:589
 #, javascript-format
 msgid "Network: ↓ %s · ↑ %s"
 msgstr ""
 
-#: src/lib/system.js:601
+#: src/lib/system.js:603
 #, javascript-format
 msgid "Fan %d"
 msgstr ""
 
-#: src/lib/system.js:601
+#: src/lib/system.js:603
 msgid "Fan"
 msgstr ""
 
-#: src/lib/system.js:614
+#: src/lib/system.js:616
 msgid "charging"
 msgstr ""
 
-#: src/lib/system.js:614
+#: src/lib/system.js:616
 msgid "discharging"
 msgstr ""
 
-#: src/lib/system.js:614
+#: src/lib/system.js:616
 msgid "full"
 msgstr ""
 
-#: src/lib/system.js:614
+#: src/lib/system.js:616
 msgid "not charging"
 msgstr ""
 
-#: src/lib/system.js:618
+#: src/lib/system.js:620
 msgid "Battery"
 msgstr ""
 
-#: src/lib/system.js:653
+#: src/lib/system.js:655
 msgid "Measuring…"
 msgstr ""
 
-#: src/lib/system.js:664
+#: src/lib/system.js:666
 #, javascript-format
 msgid "%s %% RAM"
 msgstr ""
@@ -533,7 +533,7 @@ msgstr ""
 msgid "No terminal emulator was found."
 msgstr ""
 
-#: src/prefs.js:50 src/prefs.js:231
+#: src/prefs.js:50 src/prefs.js:236
 msgid "Top bar"
 msgstr ""
 
@@ -735,134 +735,134 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: src/prefs.js:190
+#: src/prefs.js:195
 msgid "Add AI service"
 msgstr ""
 
-#: src/prefs.js:191
+#: src/prefs.js:196
 msgid "Give it a name and a web address, a command, or both."
 msgstr ""
 
-#: src/prefs.js:195
+#: src/prefs.js:200
 msgid "Name"
 msgstr ""
 
-#: src/prefs.js:196
+#: src/prefs.js:201
 msgid "Web address (e.g. chat.example.com)"
 msgstr ""
 
-#: src/prefs.js:197
+#: src/prefs.js:202
 msgid "Command (optional, e.g. aider)"
 msgstr ""
 
-#: src/prefs.js:202
+#: src/prefs.js:207
 msgid "Cancel"
 msgstr ""
 
-#: src/prefs.js:203
+#: src/prefs.js:208
 msgid "Add"
 msgstr ""
 
-#: src/prefs.js:232
+#: src/prefs.js:237
 msgid "Hide GNOME’s own network icon"
 msgstr ""
 
-#: src/prefs.js:233
+#: src/prefs.js:238
 msgid "Avoids two network icons. The Wi-Fi button in Quick Settings stays."
 msgstr ""
 
-#: src/prefs.js:234
+#: src/prefs.js:239
 msgid "Show the country of your public IP"
 msgstr ""
 
-#: src/prefs.js:235
+#: src/prefs.js:240
 msgid "Never"
 msgstr ""
 
-#: src/prefs.js:236
+#: src/prefs.js:241
 msgid "When a VPN is active"
 msgstr ""
 
-#: src/prefs.js:237
+#: src/prefs.js:242
 msgid "Always"
 msgstr ""
 
-#: src/prefs.js:242
+#: src/prefs.js:247
 msgid "Public IP and DNS"
 msgstr ""
 
-#: src/prefs.js:243
+#: src/prefs.js:248
 msgid ""
 "Shows the address, location and provider the internet sees (from "
 "ipleak.net), and which DNS servers really answer for you (DNS leak test from "
 "bash.ws). Re-checked when the network or VPN changes."
 msgstr ""
 
-#: src/prefs.js:245
+#: src/prefs.js:250
 msgid "Check public IP and DNS"
 msgstr ""
 
-#: src/prefs.js:249
+#: src/prefs.js:254
 msgid "Custom DNS"
 msgstr ""
 
-#: src/prefs.js:250
+#: src/prefs.js:255
 msgid ""
 "Servers for the “Custom” choice in the DNS menu, separated by spaces. IPv4 "
 "and IPv6 both work."
 msgstr ""
 
-#: src/prefs.js:260
-msgid ""
-"Download from a public test server, upload to Cloudflare. Runs only when you "
-"press the button."
-msgstr ""
-
-#: src/prefs.js:262
-msgid "Server"
-msgstr ""
-
-#: src/prefs.js:263
-msgid "Tele2 (Sweden)"
-msgstr ""
-
-#: src/prefs.js:264
-msgid "Hetzner (Germany)"
-msgstr ""
-
 #: src/prefs.js:265
-msgid "Hetzner (Finland)"
-msgstr ""
-
-#: src/prefs.js:266
-msgid "Hetzner (USA East)"
+msgid ""
+"Downloads from the server you pick and uploads to Tele2’s public test "
+"server. Runs only when you press the button."
 msgstr ""
 
 #: src/prefs.js:267
-msgid "Hetzner (USA West)"
+msgid "Server"
 msgstr ""
 
 #: src/prefs.js:268
+msgid "Tele2 (Sweden)"
+msgstr ""
+
+#: src/prefs.js:269
+msgid "Hetzner (Germany)"
+msgstr ""
+
+#: src/prefs.js:270
+msgid "Hetzner (Finland)"
+msgstr ""
+
+#: src/prefs.js:271
+msgid "Hetzner (USA East)"
+msgstr ""
+
+#: src/prefs.js:272
+msgid "Hetzner (USA West)"
+msgstr ""
+
+#: src/prefs.js:273
 msgid "Hetzner (Singapore)"
 msgstr ""
 
-#: src/prefs.js:277
+#: src/prefs.js:282
 msgid "About"
 msgstr ""
 
-#: src/prefs.js:282
+#: src/prefs.js:287
 msgid "System monitor, network details and AI usage in the top bar."
 msgstr ""
 
-#: src/prefs.js:286
+#: src/prefs.js:291
 msgid "Source code and issues"
 msgstr ""
 
-#: src/prefs.js:291
+#: src/prefs.js:296
 msgid "Credits"
 msgstr ""
 
-#: src/prefs.js:292
+#: src/prefs.js:297
 msgid ""
 "Inspired by the Omarchy desktop; the AI usage endpoints follow Omarchy’s "
 "collectors (MIT). Service logos belong to their owners."

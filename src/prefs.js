@@ -262,7 +262,7 @@ export default class TopbarPulsePrefs extends ExtensionPreferences {
 
         const speed = new Adw.PreferencesGroup({
             title: _('Speed test'),
-            description: _('Download from a public test server, upload to Cloudflare. Runs only when you press the button.'),
+            description: _('Downloads from the server you pick and uploads to Tele2’s public test server. Runs only when you press the button.'),
         });
         speed.add(comboRow(settings, 'speedtest-server', _('Server'), [
             ['tele2', _('Tele2 (Sweden)')],

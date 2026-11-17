@@ -45,7 +45,8 @@ servers, ping to router and internet, and live traffic. Plus:
   lookups go through your usual provider while a VPN is active.
 - **Wi-Fi band** (2.4 / 5 / 6 GHz or automatic) and **DNS provider**
   (automatic, Cloudflare, Google, Quad9, Mullvad or your own) per connection.
-- **Speed test** (download from Tele2 or Hetzner, upload to Cloudflare).
+- **Speed test** (download from Tele2 or Hetzner, upload to Tele2 — public
+  test servers made for this).
 - **Share Wi-Fi** as a QR code your phone can scan.
 - Can hide GNOME's own network icon so there is only one.
 
@@ -73,7 +74,7 @@ Nothing is collected or sent to the author. The extension talks to:
 |---|---|---|
 | Public IP check (on by default, can be turned off) | ipleak.net | your public IP |
 | DNS leak check (same switch) | bash.ws | your public IP and DNS resolvers |
-| Speed test (only when you press it) | Tele2 / Hetzner, Cloudflare | your public IP |
+| Speed test (only when you press it) | Tele2 / Hetzner | your public IP |
 | Claude limits (off until you turn it on) | api.anthropic.com | the same request Claude Code makes |
 | Codex limits (off until you turn it on) | OpenAI, through the Codex CLI | the same request the Codex CLI makes |
 | Copilot limits (off until you turn it on) | api.github.com | the same request the Copilot CLI makes |
