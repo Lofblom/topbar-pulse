@@ -1,0 +1,10 @@
+{
+  "uuid": "topbar-pulse@lofblom.github.io",
+  "name": "Topbar Pulse",
+  "description": "System monitor, network details and AI usage in the top bar.\n\n• CPU, GPU (Intel, AMD, NVIDIA), RAM, disk, network, sensors and the busiest processes\n• Network: Wi-Fi details, public IP and location, VPN and DNS leak check, Wi-Fi band and DNS provider, speed test, share Wi-Fi by QR code\n• AI: subscription limits for Claude Code, Codex (ChatGPT) and GitHub Copilot, and quick launch for Claude, ChatGPT, Gemini, Copilot, Mistral, Perplexity and more — as an app window, a browser tab or the CLI in a terminal\n\nThe public IP check uses ipleak.net, the DNS check bash.ws and the speed test Tele2/Hetzner and Cloudflare. Each can be turned off.",
+  "shell-version": ["48", "49", "50", "51"],
+  "url": "https://github.com/Lofblom/topbar-pulse",
+  "settings-schema": "org.gnome.shell.extensions.topbar-pulse",
+  "gettext-domain": "topbar-pulse",
+  "version-name": "1.0"
+}

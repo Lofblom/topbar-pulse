@@ -1,0 +1,660 @@
+# Swedish translation of Topbar Pulse.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Topbar Pulse\n"
+"PO-Revision-Date: 2026-11-17 18:00+0100\n"
+"Last-Translator: Topbar Pulse contributors\n"
+"Language-Team: Swedish\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "Open"
+msgstr "Öppna"
+
+msgid "Refresh"
+msgstr "Uppdatera"
+
+msgid "Topbar Pulse settings…"
+msgstr "Inställningar för Topbar Pulse…"
+
+msgid "Today: %s new tokens (%s written by Claude)"
+msgstr "Idag: %s nya tokens (%s skrivna av Claude)"
+
+msgid "+ %s re-read from cache – the conversation is sent again at every step"
+msgstr "+ %s återlästa ur cache – samtalet skickas om vid varje steg"
+
+msgid "Could not update: %s"
+msgstr "Kunde inte uppdatera: %s"
+
+msgid "Showing the last known numbers"
+msgstr "Visar senast kända värden"
+
+msgid "Open %s in a terminal"
+msgstr "Öppna %s i en terminal"
+
+msgid "month"
+msgstr "månad"
+
+msgid "week"
+msgstr "vecka"
+
+msgid "session"
+msgstr "session"
+
+msgid "Sign-in has expired. Start Claude Code once to renew it."
+msgstr "Inloggningen har gått ut. Starta Claude Code en gång för att förnya den."
+
+msgid "Not signed in. Run “claude” and sign in."
+msgstr "Inte inloggad. Kör ”claude” och logga in."
+
+msgid "Session (5 h)"
+msgstr "Session (5 h)"
+
+msgid "Week"
+msgstr "Vecka"
+
+msgid "Month"
+msgstr "Månad"
+
+msgid "%d h window"
+msgstr "%d h-fönster"
+
+msgid "Limit"
+msgstr "Gräns"
+
+msgid "Codex could not read the limits. Run “codex” and sign in."
+msgstr "Codex kunde inte läsa gränserna. Kör ”codex” och logga in."
+
+msgid "Codex did not answer in time."
+msgstr "Codex svarade inte i tid."
+
+msgid "Premium requests"
+msgstr "Premiumförfrågningar"
+
+msgid "Unlimited premium requests"
+msgstr "Obegränsade premiumförfrågningar"
+
+msgid "Automatic"
+msgstr "Automatiskt"
+
+msgid "Network"
+msgstr "Nätverk"
+
+msgid "Internet"
+msgstr "Internet"
+
+msgid "Wi-Fi band"
+msgstr "Wi-Fi-band"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Speed test"
+msgstr "Hastighetstest"
+
+msgid "Check DNS"
+msgstr "Testa DNS"
+
+msgid "Share Wi-Fi"
+msgstr "Dela Wi-Fi"
+
+msgid "Network settings"
+msgstr "Nätverksinställningar"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "NetworkManager is not available"
+msgstr "NetworkManager är inte tillgänglig"
+
+msgid "Not connected"
+msgstr "Inte ansluten"
+
+msgid "Signal"
+msgstr "Signal"
+
+msgid "Band"
+msgstr "Band"
+
+msgid "Link speed"
+msgstr "Länkhastighet"
+
+msgid "Connection"
+msgstr "Anslutning"
+
+msgid "Cable, %d Mbit/s"
+msgstr "Kabel, %d Mbit/s"
+
+msgid "Cable"
+msgstr "Kabel"
+
+msgid "Device"
+msgstr "Enhet"
+
+msgid "IP address"
+msgstr "IP-adress"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "DNS servers"
+msgstr "DNS-servrar"
+
+msgid "Ping router"
+msgstr "Ping router"
+
+msgid "Ping internet"
+msgstr "Ping internet"
+
+msgid "no answer"
+msgstr "inget svar"
+
+msgid "Traffic"
+msgstr "Trafik"
+
+msgid "total"
+msgstr "totalt"
+
+msgid "VPN"
+msgstr "VPN"
+
+msgid "Checking…"
+msgstr "Testar…"
+
+msgid "Public IP check is turned off in the settings."
+msgstr "Kontrollen av publik IP är avstängd i inställningarna."
+
+msgid "Public IP"
+msgstr "Publik IP"
+
+msgid "Location"
+msgstr "Plats"
+
+msgid "Provider"
+msgstr "Operatör"
+
+msgid "Host name"
+msgstr "Värdnamn"
+
+msgid "Could not reach ipleak.net (%s)"
+msgstr "Kunde inte nå ipleak.net (%s)"
+
+msgid "Checking public IP…"
+msgstr "Kontrollerar publik IP…"
+
+msgid "DNS resolvers"
+msgstr "DNS utåt"
+
+msgid "DNS check failed (%s)"
+msgstr "DNS-testet misslyckades (%s)"
+
+msgid "Data from ipleak.net and bash.ws"
+msgstr "Data från ipleak.net och bash.ws"
+
+msgid "⚠ Possible DNS leak: lookups go through %s, your usual provider, outside the VPN."
+msgstr "⚠ Möjlig DNS-läcka: uppslagningar går via %s, din vanliga operatör, utanför VPN:en."
+
+msgid "✓ No DNS leak found: lookups do not go through your usual provider."
+msgstr "✓ Ingen DNS-läcka: uppslagningarna går inte via din vanliga operatör."
+
+msgid "No VPN active. DNS lookups are visible to the resolvers above."
+msgstr "Ingen VPN aktiv. DNS-uppslagningar syns för servrarna ovan."
+
+msgid "Wi-Fi band: %s"
+msgstr "Wi-Fi-band: %s"
+
+msgid "now %s"
+msgstr "nu %s"
+
+msgid "Could not change band"
+msgstr "Kunde inte byta band"
+
+msgid "Automatic (from network)"
+msgstr "Automatiskt (från nätverket)"
+
+msgid "Custom"
+msgstr "Egen"
+
+msgid "DNS: %s"
+msgstr "DNS: %s"
+
+msgid "Custom…"
+msgstr "Egen…"
+
+msgid "Could not change DNS"
+msgstr "Kunde inte byta DNS"
+
+msgid "Measuring download…"
+msgstr "Mäter nedladdning…"
+
+msgid "Measuring upload…"
+msgstr "Mäter uppladdning…"
+
+msgid "Stop"
+msgstr "Stoppa"
+
+msgid "latency"
+msgstr "latens"
+
+msgid "Server: %s"
+msgstr "Server: %s"
+
+msgid "(test failed)"
+msgstr "(testet misslyckades)"
+
+msgid "Speed test failed: %s"
+msgstr "Hastighetstestet misslyckades: %s"
+
+msgid "Enterprise networks have no shareable password."
+msgstr "Företagsnätverk har inget lösenord som kan delas."
+
+msgid "The Wi-Fi password could not be read."
+msgstr "Wi-Fi-lösenordet kunde inte läsas."
+
+msgid "Password: %s"
+msgstr "Lösenord: %s"
+
+msgid "System monitor"
+msgstr "Systemmonitor"
+
+msgid "Processor"
+msgstr "Processor"
+
+msgid "Graphics"
+msgstr "Grafik"
+
+msgid "Memory"
+msgstr "Minne"
+
+msgid "Swap"
+msgstr "Swap"
+
+msgid "Storage & network"
+msgstr "Lagring och nätverk"
+
+msgid "Disk /"
+msgstr "Disk /"
+
+msgid "Sensors & power"
+msgstr "Sensorer och ström"
+
+msgid "Busiest processes"
+msgstr "Tyngsta processerna"
+
+msgid "share of the whole CPU"
+msgstr "andel av hela CPU:n"
+
+msgid "Open system monitor"
+msgstr "Öppna systemövervakaren"
+
+msgid "3D"
+msgstr "3D"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Video enhance"
+msgstr "Videoförbättring"
+
+msgid "Compute"
+msgstr "Beräkning"
+
+msgid "Copy"
+msgstr "Kopiering"
+
+msgid "load %s"
+msgstr "last %s"
+
+msgid "%s threads"
+msgstr "%s trådar"
+
+msgid "%s / %s GB used · %s GB cache"
+msgstr "%s / %s GB använt · %s GB cache"
+
+msgid "Disk: read %s · write %s"
+msgstr "Disk: läser %s · skriver %s"
+
+msgid "Network: ↓ %s · ↑ %s"
+msgstr "Nätverk: ↓ %s · ↑ %s"
+
+msgid "Fan %d"
+msgstr "Fläkt %d"
+
+msgid "Fan"
+msgstr "Fläkt"
+
+msgid "charging"
+msgstr "laddar"
+
+msgid "discharging"
+msgstr "urladdas"
+
+msgid "full"
+msgstr "full"
+
+msgid "not charging"
+msgstr "laddar inte"
+
+msgid "Battery"
+msgstr "Batteri"
+
+msgid "Measuring…"
+msgstr "Mäter…"
+
+msgid "%s %% RAM"
+msgstr "%s %% RAM"
+
+msgid "Could not start %s: %s"
+msgstr "Kunde inte starta %s: %s"
+
+msgid "%d d %d h"
+msgstr "%d d %d h"
+
+msgid "%d h %d min"
+msgstr "%d h %d min"
+
+msgid "%d min"
+msgstr "%d min"
+
+msgid "resets in %s"
+msgstr "återställs om %s"
+
+msgid "Could not open %s: %s"
+msgstr "Kunde inte öppna %s: %s"
+
+msgid "No terminal emulator was found."
+msgstr "Ingen terminal hittades."
+
+msgid "Top bar"
+msgstr "Toppfältet"
+
+msgid "Indicators"
+msgstr "Indikatorer"
+
+msgid "CPU, GPU, memory, disk, sensors, processes"
+msgstr "CPU, GPU, minne, disk, sensorer, processer"
+
+msgid "Subscription limits and quick launch"
+msgstr "Prenumerationsgränser och snabbstart"
+
+msgid "Wi-Fi, public IP, VPN, DNS and speed test"
+msgstr "Wi-Fi, publik IP, VPN, DNS och hastighetstest"
+
+msgid "Tighter top bar"
+msgstr "Tätare toppfält"
+
+msgid "Less space between all icons on the right side of the top bar"
+msgstr "Mindre mellanrum mellan alla ikoner till höger i toppfältet"
+
+msgid "What the top bar shows. Everything is always in the menu. With everything off only the icon is shown."
+msgstr "Vad som visas i toppfältet. Allt finns alltid i menyn. Slår du av allt syns bara ikonen."
+
+msgid "Style"
+msgstr "Visning"
+
+msgid "Text with labels"
+msgstr "Text med etiketter"
+
+msgid "Colour-coded numbers"
+msgstr "Färgkodade siffror"
+
+msgid "Small bars"
+msgstr "Små staplar"
+
+msgid "CPU"
+msgstr "CPU"
+
+msgid "Blue"
+msgstr "Blå"
+
+msgid "GPU"
+msgstr "GPU"
+
+msgid "Purple"
+msgstr "Lila"
+
+msgid "RAM"
+msgstr "RAM"
+
+msgid "Green"
+msgstr "Grön"
+
+msgid "CPU temperature"
+msgstr "CPU-temperatur"
+
+msgid "Show the icon"
+msgstr "Visa ikonen"
+
+msgid "The icon is always shown when nothing else is"
+msgstr "Ikonen visas alltid om inget annat är påslaget"
+
+msgid "Icon and percentage"
+msgstr "Ikon och procent"
+
+msgid "Icon only"
+msgstr "Endast ikon"
+
+msgid "Filling ring"
+msgstr "Ring som fylls"
+
+msgid "The percentage is the highest limit you are at right now"
+msgstr "Procenten är den högsta gränsen du ligger på just nu"
+
+msgid "Opening"
+msgstr "Öppning"
+
+msgid "Open web services as"
+msgstr "Öppna webbtjänster som"
+
+msgid "App window"
+msgstr "Appfönster"
+
+msgid "Browser tab"
+msgstr "Flik i webbläsaren"
+
+msgid "App windows need Chromium, Chrome, Brave, Edge or Vivaldi; otherwise a tab is used. Services with a command-line tool get a terminal button in the menu."
+msgstr "Appfönster kräver Chromium, Chrome, Brave, Edge eller Vivaldi, annars används en flik. Tjänster med kommandoradsverktyg får en terminalknapp i menyn."
+
+msgid "Usage"
+msgstr "Förbrukning"
+
+msgid "Limits are read with the sign-in the official command-line tools already keep on this computer (Claude Code, Codex, GitHub CLI). Nothing is stored or sent anywhere else."
+msgstr "Gränserna läses med inloggningen som de officiella kommandoradsverktygen redan har på datorn (Claude Code, Codex, GitHub CLI). Inget sparas eller skickas någon annanstans."
+
+msgid "Show subscription limits"
+msgstr "Visa prenumerationsgränser"
+
+msgid "Update every (minutes)"
+msgstr "Uppdatera var (minut)"
+
+msgid "Services"
+msgstr "Tjänster"
+
+msgid "Shown in the AI menu."
+msgstr "Visas i AI-menyn."
+
+msgid "limits"
+msgstr "gränser"
+
+msgid "CLI: %s"
+msgstr "CLI: %s"
+
+msgid "Your own services"
+msgstr "Egna tjänster"
+
+msgid "Any AI chat on the web, or a command-line tool."
+msgstr "Vilken AI-chatt som helst på webben, eller ett kommandoradsverktyg."
+
+msgid "Add service"
+msgstr "Lägg till tjänst"
+
+msgid "No services added yet"
+msgstr "Inga tjänster tillagda än"
+
+msgid "Remove"
+msgstr "Ta bort"
+
+msgid "Add AI service"
+msgstr "Lägg till AI-tjänst"
+
+msgid "Give it a name and a web address, a command, or both."
+msgstr "Ge den ett namn och en webbadress, ett kommando eller båda."
+
+msgid "Name"
+msgstr "Namn"
+
+msgid "Web address (e.g. chat.example.com)"
+msgstr "Webbadress (t.ex. chat.example.com)"
+
+msgid "Command (optional, e.g. aider)"
+msgstr "Kommando (valfritt, t.ex. aider)"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Add"
+msgstr "Lägg till"
+
+msgid "Hide GNOME’s own network icon"
+msgstr "Dölj GNOME:s egen nätverksikon"
+
+msgid "Avoids two network icons. The Wi-Fi button in Quick Settings stays."
+msgstr "Undviker två nätverksikoner. Wi-Fi-knappen i snabbinställningarna finns kvar."
+
+msgid "Show the country of your public IP"
+msgstr "Visa landet för din publika IP"
+
+msgid "Never"
+msgstr "Aldrig"
+
+msgid "When a VPN is active"
+msgstr "När en VPN är aktiv"
+
+msgid "Always"
+msgstr "Alltid"
+
+msgid "Public IP and DNS"
+msgstr "Publik IP och DNS"
+
+msgid "Shows the address, location and provider the internet sees (from ipleak.net), and which DNS servers really answer for you (DNS leak test from bash.ws). Re-checked when the network or VPN changes."
+msgstr "Visar adressen, platsen och operatören som internet ser (från ipleak.net) och vilka DNS-servrar som faktiskt svarar åt dig (DNS-läcktest från bash.ws). Kontrolleras igen när nätverket eller VPN:en ändras."
+
+msgid "Check public IP and DNS"
+msgstr "Kontrollera publik IP och DNS"
+
+msgid "Custom DNS"
+msgstr "Egen DNS"
+
+msgid "Servers for the “Custom” choice in the DNS menu, separated by spaces. IPv4 and IPv6 both work."
+msgstr "Servrar för valet ”Egen” i DNS-menyn, åtskilda med mellanslag. Både IPv4 och IPv6 fungerar."
+
+msgid "Download from a public test server, upload to Cloudflare. Runs only when you press the button."
+msgstr "Nedladdning från en öppen testserver, uppladdning till Cloudflare. Körs bara när du trycker på knappen."
+
+msgid "Server"
+msgstr "Server"
+
+msgid "Tele2 (Sweden)"
+msgstr "Tele2 (Sverige)"
+
+msgid "Hetzner (Germany)"
+msgstr "Hetzner (Tyskland)"
+
+msgid "Hetzner (Finland)"
+msgstr "Hetzner (Finland)"
+
+msgid "Hetzner (USA East)"
+msgstr "Hetzner (USA öst)"
+
+msgid "Hetzner (USA West)"
+msgstr "Hetzner (USA väst)"
+
+msgid "Hetzner (Singapore)"
+msgstr "Hetzner (Singapore)"
+
+msgid "About"
+msgstr "Om"
+
+msgid "System monitor, network details and AI usage in the top bar."
+msgstr "Systemmonitor, nätverksdetaljer och AI-förbrukning i toppfältet."
+
+msgid "Source code and issues"
+msgstr "Källkod och felrapporter"
+
+msgid "Credits"
+msgstr "Tack"
+
+msgid "Inspired by the Omarchy desktop; the AI usage endpoints follow Omarchy’s collectors (MIT). Service logos belong to their owners."
+msgstr "Inspirerat av skrivbordet Omarchy; AI-förbrukningen hämtas på samma sätt som Omarchys insamlare (MIT). Tjänsternas logotyper tillhör sina ägare."
+
+msgid "Show the system monitor"
+msgstr "Visa systemmonitorn"
+
+msgid "Show the AI indicator"
+msgstr "Visa AI-indikatorn"
+
+msgid "Show the network indicator"
+msgstr "Visa nätverksindikatorn"
+
+msgid "Less space between all icons on the right of the top bar"
+msgstr "Mindre mellanrum mellan alla ikoner till höger i toppfältet"
+
+msgid "CPU in the top bar"
+msgstr "CPU i toppfältet"
+
+msgid "GPU in the top bar"
+msgstr "GPU i toppfältet"
+
+msgid "RAM in the top bar"
+msgstr "RAM i toppfältet"
+
+msgid "CPU temperature in the top bar"
+msgstr "CPU-temperatur i toppfältet"
+
+msgid "Show the system monitor icon"
+msgstr "Visa systemmonitorns ikon"
+
+msgid "Top bar style: labels, colour-coded numbers or bars"
+msgstr "Visning i toppfältet: etiketter, färgkodade siffror eller staplar"
+
+msgid "How the AI indicator looks in the top bar"
+msgstr "Hur AI-indikatorn ser ut i toppfältet"
+
+msgid "Enabled built-in AI services"
+msgstr "Påslagna inbyggda AI-tjänster"
+
+msgid "User-added AI services as JSON: [{id, name, url, cli}]"
+msgstr "Egna AI-tjänster som JSON: [{id, name, url, cli}]"
+
+msgid "Open web AI services as an app window or a browser tab"
+msgstr "Öppna AI-webbtjänster som appfönster eller webbläsarflik"
+
+msgid "Read subscription limits from the CLIs signed in on this computer"
+msgstr "Läs prenumerationsgränser från de inloggade CLI-verktygen på datorn"
+
+msgid "Minutes between usage updates"
+msgstr "Minuter mellan uppdateringar av förbrukningen"
+
+msgid "Hide GNOME's own network icon while Topbar Pulse shows one"
+msgstr "Dölj GNOME:s egen nätverksikon när Topbar Pulse visar en"
+
+msgid "Look up the public IP (ipleak.net) and test DNS (bash.ws)"
+msgstr "Slå upp publik IP (ipleak.net) och testa DNS (bash.ws)"
+
+msgid "Show the country of the public IP in the top bar"
+msgstr "Visa landet för den publika IP:n i toppfältet"
+
+msgid "Custom DNS servers, separated by spaces"
+msgstr "Egna DNS-servrar, åtskilda med mellanslag"
+
+msgid "Provider seen without VPN (used to recognise DNS leaks)"
+msgstr "Operatör utan VPN (används för att känna igen DNS-läckor)"
+
+msgid "Download server for the speed test"
+msgstr "Nedladdningsserver för hastighetstestet"

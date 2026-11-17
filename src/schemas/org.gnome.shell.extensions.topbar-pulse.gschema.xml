@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="topbar-pulse">
+  <schema id="org.gnome.shell.extensions.topbar-pulse" path="/org/gnome/shell/extensions/topbar-pulse/">
+
+    <!-- which indicators are shown -->
+    <key name="show-system" type="b"><default>true</default><summary>Show the system monitor</summary></key>
+    <key name="show-ai" type="b"><default>true</default><summary>Show the AI indicator</summary></key>
+    <key name="show-network" type="b"><default>true</default><summary>Show the network indicator</summary></key>
+    <key name="tighten-top-bar" type="b"><default>false</default><summary>Less space between all icons on the right of the top bar</summary></key>
+
+    <!-- system monitor -->
+    <key name="system-show-cpu" type="b"><default>true</default><summary>CPU in the top bar</summary></key>
+    <key name="system-show-gpu" type="b"><default>true</default><summary>GPU in the top bar</summary></key>
+    <key name="system-show-ram" type="b"><default>true</default><summary>RAM in the top bar</summary></key>
+    <key name="system-show-temp" type="b"><default>true</default><summary>CPU temperature in the top bar</summary></key>
+    <key name="system-show-icon" type="b"><default>true</default><summary>Show the system monitor icon</summary></key>
+    <key name="system-style" type="s">
+      <choices><choice value="labels"/><choice value="compact"/><choice value="bars"/></choices>
+      <default>'compact'</default>
+      <summary>Top bar style: labels, colour-coded numbers or bars</summary>
+    </key>
+
+    <!-- AI -->
+    <key name="ai-style" type="s">
+      <choices><choice value="icon-percent"/><choice value="icon"/><choice value="ring"/></choices>
+      <default>'icon-percent'</default>
+      <summary>How the AI indicator looks in the top bar</summary>
+    </key>
+    <key name="ai-services" type="as">
+      <default>['claude', 'chatgpt', 'gemini', 'copilot']</default>
+      <summary>Enabled built-in AI services</summary>
+    </key>
+    <key name="ai-custom-services" type="s">
+      <default>'[]'</default>
+      <summary>User-added AI services as JSON: [{id, name, url, cli}]</summary>
+    </key>
+    <key name="ai-open-mode" type="s">
+      <choices><choice value="app"/><choice value="browser"/></choices>
+      <default>'app'</default>
+      <summary>Open web AI services as an app window or a browser tab</summary>
+    </key>
+    <key name="ai-track-usage" type="b">
+      <default>true</default>
+      <summary>Read subscription limits from the CLIs signed in on this computer</summary>
+    </key>
+    <key name="ai-refresh-minutes" type="i">
+      <range min="2" max="120"/>
+      <default>10</default>
+      <summary>Minutes between usage updates</summary>
+    </key>
+
+    <!-- network -->
+    <key name="network-hide-gnome" type="b">
+      <default>true</default>
+      <summary>Hide GNOME's own network icon while Topbar Pulse shows one</summary>
+    </key>
+    <key name="network-public-ip" type="b">
+      <default>true</default>
+      <summary>Look up the public IP (ipleak.net) and test DNS (bash.ws)</summary>
+    </key>
+    <key name="network-show-country" type="s">
+      <choices><choice value="never"/><choice value="vpn"/><choice value="always"/></choices>
+      <default>'vpn'</default>
+      <summary>Show the country of the public IP in the top bar</summary>
+    </key>
+    <key name="network-custom-dns" type="s">
+      <default>''</default>
+      <summary>Custom DNS servers, separated by spaces</summary>
+    </key>
+    <key name="network-home-asn" type="s">
+      <default>''</default>
+      <summary>Provider seen without VPN (used to recognise DNS leaks)</summary>
+    </key>
+    <key name="speedtest-server" type="s">
+      <choices>
+        <choice value="tele2"/><choice value="hetzner-fsn"/><choice value="hetzner-hel"/>
+        <choice value="hetzner-ash"/><choice value="hetzner-hil"/><choice value="hetzner-sin"/>
+      </choices>
+      <default>'tele2'</default>
+      <summary>Download server for the speed test</summary>
+    </key>
+  </schema>
+</schemalist>

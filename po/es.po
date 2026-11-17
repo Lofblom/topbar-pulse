@@ -1,0 +1,660 @@
+# Spanish translation of Topbar Pulse.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Topbar Pulse\n"
+"PO-Revision-Date: 2026-11-17 18:00+0100\n"
+"Last-Translator: Topbar Pulse contributors\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "AI"
+msgstr "IA"
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Refresh"
+msgstr "Actualizar"
+
+msgid "Topbar Pulse settings…"
+msgstr "Ajustes de Topbar Pulse…"
+
+msgid "Today: %s new tokens (%s written by Claude)"
+msgstr "Hoy: %s tokens nuevos (%s escritos por Claude)"
+
+msgid "+ %s re-read from cache – the conversation is sent again at every step"
+msgstr "+ %s releídos de la caché – la conversación se reenvía en cada paso"
+
+msgid "Could not update: %s"
+msgstr "No se pudo actualizar: %s"
+
+msgid "Showing the last known numbers"
+msgstr "Mostrando los últimos valores conocidos"
+
+msgid "Open %s in a terminal"
+msgstr "Abrir %s en una terminal"
+
+msgid "month"
+msgstr "mes"
+
+msgid "week"
+msgstr "semana"
+
+msgid "session"
+msgstr "sesión"
+
+msgid "Sign-in has expired. Start Claude Code once to renew it."
+msgstr "La sesión ha caducado. Inicia Claude Code una vez para renovarla."
+
+msgid "Not signed in. Run “claude” and sign in."
+msgstr "No has iniciado sesión. Ejecuta «claude» e inicia sesión."
+
+msgid "Session (5 h)"
+msgstr "Sesión (5 h)"
+
+msgid "Week"
+msgstr "Semana"
+
+msgid "Month"
+msgstr "Mes"
+
+msgid "%d h window"
+msgstr "Ventana de %d h"
+
+msgid "Limit"
+msgstr "Límite"
+
+msgid "Codex could not read the limits. Run “codex” and sign in."
+msgstr "Codex no pudo leer los límites. Ejecuta «codex» e inicia sesión."
+
+msgid "Codex did not answer in time."
+msgstr "Codex no respondió a tiempo."
+
+msgid "Premium requests"
+msgstr "Solicitudes premium"
+
+msgid "Unlimited premium requests"
+msgstr "Solicitudes premium ilimitadas"
+
+msgid "Automatic"
+msgstr "Automático"
+
+msgid "Network"
+msgstr "Red"
+
+msgid "Internet"
+msgstr "Internet"
+
+msgid "Wi-Fi band"
+msgstr "Banda Wi-Fi"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Speed test"
+msgstr "Test de velocidad"
+
+msgid "Check DNS"
+msgstr "Probar DNS"
+
+msgid "Share Wi-Fi"
+msgstr "Compartir Wi-Fi"
+
+msgid "Network settings"
+msgstr "Configuración de red"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "NetworkManager is not available"
+msgstr "NetworkManager no está disponible"
+
+msgid "Not connected"
+msgstr "Sin conexión"
+
+msgid "Signal"
+msgstr "Señal"
+
+msgid "Band"
+msgstr "Banda"
+
+msgid "Link speed"
+msgstr "Velocidad del enlace"
+
+msgid "Connection"
+msgstr "Conexión"
+
+msgid "Cable, %d Mbit/s"
+msgstr "Cable, %d Mbit/s"
+
+msgid "Cable"
+msgstr "Cable"
+
+msgid "Device"
+msgstr "Dispositivo"
+
+msgid "IP address"
+msgstr "Dirección IP"
+
+msgid "Gateway"
+msgstr "Puerta de enlace"
+
+msgid "DNS servers"
+msgstr "Servidores DNS"
+
+msgid "Ping router"
+msgstr "Ping al router"
+
+msgid "Ping internet"
+msgstr "Ping a internet"
+
+msgid "no answer"
+msgstr "sin respuesta"
+
+msgid "Traffic"
+msgstr "Tráfico"
+
+msgid "total"
+msgstr "total"
+
+msgid "VPN"
+msgstr "VPN"
+
+msgid "Checking…"
+msgstr "Comprobando…"
+
+msgid "Public IP check is turned off in the settings."
+msgstr "La comprobación de la IP pública está desactivada en los ajustes."
+
+msgid "Public IP"
+msgstr "IP pública"
+
+msgid "Location"
+msgstr "Ubicación"
+
+msgid "Provider"
+msgstr "Proveedor"
+
+msgid "Host name"
+msgstr "Nombre de host"
+
+msgid "Could not reach ipleak.net (%s)"
+msgstr "No se pudo conectar con ipleak.net (%s)"
+
+msgid "Checking public IP…"
+msgstr "Comprobando la IP pública…"
+
+msgid "DNS resolvers"
+msgstr "DNS hacia fuera"
+
+msgid "DNS check failed (%s)"
+msgstr "Falló la prueba de DNS (%s)"
+
+msgid "Data from ipleak.net and bash.ws"
+msgstr "Datos de ipleak.net y bash.ws"
+
+msgid "⚠ Possible DNS leak: lookups go through %s, your usual provider, outside the VPN."
+msgstr "⚠ Posible fuga de DNS: las consultas pasan por %s, tu proveedor habitual, fuera de la VPN."
+
+msgid "✓ No DNS leak found: lookups do not go through your usual provider."
+msgstr "✓ Sin fugas de DNS: las consultas no pasan por tu proveedor habitual."
+
+msgid "No VPN active. DNS lookups are visible to the resolvers above."
+msgstr "No hay VPN activa. Las consultas DNS son visibles para los servidores de arriba."
+
+msgid "Wi-Fi band: %s"
+msgstr "Banda Wi-Fi: %s"
+
+msgid "now %s"
+msgstr "ahora %s"
+
+msgid "Could not change band"
+msgstr "No se pudo cambiar la banda"
+
+msgid "Automatic (from network)"
+msgstr "Automático (de la red)"
+
+msgid "Custom"
+msgstr "Personalizado"
+
+msgid "DNS: %s"
+msgstr "DNS: %s"
+
+msgid "Custom…"
+msgstr "Personalizado…"
+
+msgid "Could not change DNS"
+msgstr "No se pudo cambiar el DNS"
+
+msgid "Measuring download…"
+msgstr "Midiendo descarga…"
+
+msgid "Measuring upload…"
+msgstr "Midiendo subida…"
+
+msgid "Stop"
+msgstr "Detener"
+
+msgid "latency"
+msgstr "latencia"
+
+msgid "Server: %s"
+msgstr "Servidor: %s"
+
+msgid "(test failed)"
+msgstr "(la prueba falló)"
+
+msgid "Speed test failed: %s"
+msgstr "Falló el test de velocidad: %s"
+
+msgid "Enterprise networks have no shareable password."
+msgstr "Las redes empresariales no tienen una contraseña que se pueda compartir."
+
+msgid "The Wi-Fi password could not be read."
+msgstr "No se pudo leer la contraseña Wi-Fi."
+
+msgid "Password: %s"
+msgstr "Contraseña: %s"
+
+msgid "System monitor"
+msgstr "Monitor del sistema"
+
+msgid "Processor"
+msgstr "Procesador"
+
+msgid "Graphics"
+msgstr "Gráficos"
+
+msgid "Memory"
+msgstr "Memoria"
+
+msgid "Swap"
+msgstr "Intercambio"
+
+msgid "Storage & network"
+msgstr "Almacenamiento y red"
+
+msgid "Disk /"
+msgstr "Disco /"
+
+msgid "Sensors & power"
+msgstr "Sensores y energía"
+
+msgid "Busiest processes"
+msgstr "Procesos más activos"
+
+msgid "share of the whole CPU"
+msgstr "parte de toda la CPU"
+
+msgid "Open system monitor"
+msgstr "Abrir el monitor del sistema"
+
+msgid "3D"
+msgstr "3D"
+
+msgid "Video"
+msgstr "Vídeo"
+
+msgid "Video enhance"
+msgstr "Mejora de vídeo"
+
+msgid "Compute"
+msgstr "Cómputo"
+
+msgid "Copy"
+msgstr "Copia"
+
+msgid "load %s"
+msgstr "carga %s"
+
+msgid "%s threads"
+msgstr "%s hilos"
+
+msgid "%s / %s GB used · %s GB cache"
+msgstr "%s / %s GB en uso · %s GB de caché"
+
+msgid "Disk: read %s · write %s"
+msgstr "Disco: lectura %s · escritura %s"
+
+msgid "Network: ↓ %s · ↑ %s"
+msgstr "Red: ↓ %s · ↑ %s"
+
+msgid "Fan %d"
+msgstr "Ventilador %d"
+
+msgid "Fan"
+msgstr "Ventilador"
+
+msgid "charging"
+msgstr "cargando"
+
+msgid "discharging"
+msgstr "descargando"
+
+msgid "full"
+msgstr "llena"
+
+msgid "not charging"
+msgstr "no carga"
+
+msgid "Battery"
+msgstr "Batería"
+
+msgid "Measuring…"
+msgstr "Midiendo…"
+
+msgid "%s %% RAM"
+msgstr "%s %% de RAM"
+
+msgid "Could not start %s: %s"
+msgstr "No se pudo iniciar %s: %s"
+
+msgid "%d d %d h"
+msgstr "%d d %d h"
+
+msgid "%d h %d min"
+msgstr "%d h %d min"
+
+msgid "%d min"
+msgstr "%d min"
+
+msgid "resets in %s"
+msgstr "se reinicia en %s"
+
+msgid "Could not open %s: %s"
+msgstr "No se pudo abrir %s: %s"
+
+msgid "No terminal emulator was found."
+msgstr "No se encontró ninguna terminal."
+
+msgid "Top bar"
+msgstr "Barra superior"
+
+msgid "Indicators"
+msgstr "Indicadores"
+
+msgid "CPU, GPU, memory, disk, sensors, processes"
+msgstr "CPU, GPU, memoria, disco, sensores, procesos"
+
+msgid "Subscription limits and quick launch"
+msgstr "Límites de suscripción y acceso rápido"
+
+msgid "Wi-Fi, public IP, VPN, DNS and speed test"
+msgstr "Wi-Fi, IP pública, VPN, DNS y test de velocidad"
+
+msgid "Tighter top bar"
+msgstr "Barra superior más compacta"
+
+msgid "Less space between all icons on the right side of the top bar"
+msgstr "Menos espacio entre todos los iconos a la derecha de la barra superior"
+
+msgid "What the top bar shows. Everything is always in the menu. With everything off only the icon is shown."
+msgstr "Lo que muestra la barra. Todo está siempre en el menú. Si desactivas todo, solo se muestra el icono."
+
+msgid "Style"
+msgstr "Estilo"
+
+msgid "Text with labels"
+msgstr "Texto con etiquetas"
+
+msgid "Colour-coded numbers"
+msgstr "Números de colores"
+
+msgid "Small bars"
+msgstr "Barras pequeñas"
+
+msgid "CPU"
+msgstr "CPU"
+
+msgid "Blue"
+msgstr "Azul"
+
+msgid "GPU"
+msgstr "GPU"
+
+msgid "Purple"
+msgstr "Morado"
+
+msgid "RAM"
+msgstr "RAM"
+
+msgid "Green"
+msgstr "Verde"
+
+msgid "CPU temperature"
+msgstr "Temperatura de la CPU"
+
+msgid "Show the icon"
+msgstr "Mostrar el icono"
+
+msgid "The icon is always shown when nothing else is"
+msgstr "El icono se muestra siempre si no hay nada más activado"
+
+msgid "Icon and percentage"
+msgstr "Icono y porcentaje"
+
+msgid "Icon only"
+msgstr "Solo icono"
+
+msgid "Filling ring"
+msgstr "Anillo que se llena"
+
+msgid "The percentage is the highest limit you are at right now"
+msgstr "El porcentaje es el límite más alto en el que estás ahora"
+
+msgid "Opening"
+msgstr "Apertura"
+
+msgid "Open web services as"
+msgstr "Abrir servicios web como"
+
+msgid "App window"
+msgstr "Ventana de aplicación"
+
+msgid "Browser tab"
+msgstr "Pestaña del navegador"
+
+msgid "App windows need Chromium, Chrome, Brave, Edge or Vivaldi; otherwise a tab is used. Services with a command-line tool get a terminal button in the menu."
+msgstr "Las ventanas de aplicación necesitan Chromium, Chrome, Brave, Edge o Vivaldi; si no, se usa una pestaña. Los servicios con herramienta de línea de comandos tienen un botón de terminal en el menú."
+
+msgid "Usage"
+msgstr "Uso"
+
+msgid "Limits are read with the sign-in the official command-line tools already keep on this computer (Claude Code, Codex, GitHub CLI). Nothing is stored or sent anywhere else."
+msgstr "Los límites se leen con la sesión que las herramientas oficiales de línea de comandos ya guardan en este equipo (Claude Code, Codex, GitHub CLI). No se guarda ni se envía nada a ningún otro sitio."
+
+msgid "Show subscription limits"
+msgstr "Mostrar límites de suscripción"
+
+msgid "Update every (minutes)"
+msgstr "Actualizar cada (minutos)"
+
+msgid "Services"
+msgstr "Servicios"
+
+msgid "Shown in the AI menu."
+msgstr "Se muestran en el menú de IA."
+
+msgid "limits"
+msgstr "límites"
+
+msgid "CLI: %s"
+msgstr "CLI: %s"
+
+msgid "Your own services"
+msgstr "Tus propios servicios"
+
+msgid "Any AI chat on the web, or a command-line tool."
+msgstr "Cualquier chat de IA en la web o una herramienta de línea de comandos."
+
+msgid "Add service"
+msgstr "Añadir servicio"
+
+msgid "No services added yet"
+msgstr "Aún no hay servicios añadidos"
+
+msgid "Remove"
+msgstr "Quitar"
+
+msgid "Add AI service"
+msgstr "Añadir servicio de IA"
+
+msgid "Give it a name and a web address, a command, or both."
+msgstr "Dale un nombre y una dirección web, un comando o ambos."
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Web address (e.g. chat.example.com)"
+msgstr "Dirección web (p. ej. chat.example.com)"
+
+msgid "Command (optional, e.g. aider)"
+msgstr "Comando (opcional, p. ej. aider)"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Add"
+msgstr "Añadir"
+
+msgid "Hide GNOME’s own network icon"
+msgstr "Ocultar el icono de red de GNOME"
+
+msgid "Avoids two network icons. The Wi-Fi button in Quick Settings stays."
+msgstr "Evita dos iconos de red. El botón Wi-Fi de los ajustes rápidos se mantiene."
+
+msgid "Show the country of your public IP"
+msgstr "Mostrar el país de tu IP pública"
+
+msgid "Never"
+msgstr "Nunca"
+
+msgid "When a VPN is active"
+msgstr "Cuando hay una VPN activa"
+
+msgid "Always"
+msgstr "Siempre"
+
+msgid "Public IP and DNS"
+msgstr "IP pública y DNS"
+
+msgid "Shows the address, location and provider the internet sees (from ipleak.net), and which DNS servers really answer for you (DNS leak test from bash.ws). Re-checked when the network or VPN changes."
+msgstr "Muestra la dirección, la ubicación y el proveedor que ve internet (de ipleak.net) y qué servidores DNS responden realmente por ti (prueba de fugas de DNS de bash.ws). Se vuelve a comprobar cuando cambia la red o la VPN."
+
+msgid "Check public IP and DNS"
+msgstr "Comprobar IP pública y DNS"
+
+msgid "Custom DNS"
+msgstr "DNS personalizado"
+
+msgid "Servers for the “Custom” choice in the DNS menu, separated by spaces. IPv4 and IPv6 both work."
+msgstr "Servidores para la opción «Personalizado» del menú DNS, separados por espacios. Funcionan IPv4 e IPv6."
+
+msgid "Download from a public test server, upload to Cloudflare. Runs only when you press the button."
+msgstr "Descarga desde un servidor de pruebas público y subida a Cloudflare. Solo se ejecuta al pulsar el botón."
+
+msgid "Server"
+msgstr "Servidor"
+
+msgid "Tele2 (Sweden)"
+msgstr "Tele2 (Suecia)"
+
+msgid "Hetzner (Germany)"
+msgstr "Hetzner (Alemania)"
+
+msgid "Hetzner (Finland)"
+msgstr "Hetzner (Finlandia)"
+
+msgid "Hetzner (USA East)"
+msgstr "Hetzner (EE. UU. Este)"
+
+msgid "Hetzner (USA West)"
+msgstr "Hetzner (EE. UU. Oeste)"
+
+msgid "Hetzner (Singapore)"
+msgstr "Hetzner (Singapur)"
+
+msgid "About"
+msgstr "Acerca de"
+
+msgid "System monitor, network details and AI usage in the top bar."
+msgstr "Monitor del sistema, detalles de red y uso de IA en la barra superior."
+
+msgid "Source code and issues"
+msgstr "Código fuente e incidencias"
+
+msgid "Credits"
+msgstr "Créditos"
+
+msgid "Inspired by the Omarchy desktop; the AI usage endpoints follow Omarchy’s collectors (MIT). Service logos belong to their owners."
+msgstr "Inspirado en el escritorio Omarchy; el uso de IA se consulta como en los recolectores de Omarchy (MIT). Los logotipos pertenecen a sus propietarios."
+
+msgid "Show the system monitor"
+msgstr "Mostrar el monitor del sistema"
+
+msgid "Show the AI indicator"
+msgstr "Mostrar el indicador de IA"
+
+msgid "Show the network indicator"
+msgstr "Mostrar el indicador de red"
+
+msgid "Less space between all icons on the right of the top bar"
+msgstr "Menos espacio entre todos los iconos a la derecha de la barra superior"
+
+msgid "CPU in the top bar"
+msgstr "CPU en la barra superior"
+
+msgid "GPU in the top bar"
+msgstr "GPU en la barra superior"
+
+msgid "RAM in the top bar"
+msgstr "RAM en la barra superior"
+
+msgid "CPU temperature in the top bar"
+msgstr "Temperatura de la CPU en la barra superior"
+
+msgid "Show the system monitor icon"
+msgstr "Mostrar el icono del monitor del sistema"
+
+msgid "Top bar style: labels, colour-coded numbers or bars"
+msgstr "Estilo: etiquetas, números de colores o barras"
+
+msgid "How the AI indicator looks in the top bar"
+msgstr "Aspecto del indicador de IA en la barra superior"
+
+msgid "Enabled built-in AI services"
+msgstr "Servicios de IA integrados activados"
+
+msgid "User-added AI services as JSON: [{id, name, url, cli}]"
+msgstr "Servicios de IA añadidos en JSON: [{id, name, url, cli}]"
+
+msgid "Open web AI services as an app window or a browser tab"
+msgstr "Abrir servicios web de IA como ventana de aplicación o pestaña"
+
+msgid "Read subscription limits from the CLIs signed in on this computer"
+msgstr "Leer los límites de suscripción de las CLI con sesión iniciada en este equipo"
+
+msgid "Minutes between usage updates"
+msgstr "Minutos entre actualizaciones del uso"
+
+msgid "Hide GNOME's own network icon while Topbar Pulse shows one"
+msgstr "Ocultar el icono de red de GNOME mientras Topbar Pulse muestre uno"
+
+msgid "Look up the public IP (ipleak.net) and test DNS (bash.ws)"
+msgstr "Consultar la IP pública (ipleak.net) y probar el DNS (bash.ws)"
+
+msgid "Show the country of the public IP in the top bar"
+msgstr "Mostrar el país de la IP pública en la barra superior"
+
+msgid "Custom DNS servers, separated by spaces"
+msgstr "Servidores DNS personalizados, separados por espacios"
+
+msgid "Provider seen without VPN (used to recognise DNS leaks)"
+msgstr "Proveedor visto sin VPN (para detectar fugas de DNS)"
+
+msgid "Download server for the speed test"
+msgstr "Servidor de descarga para el test de velocidad"
