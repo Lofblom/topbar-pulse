@@ -48,9 +48,25 @@ export function allServices(customJson) {
     return [...SERVICES, ...parseCustom(customJson)];
 }
 
+// Add a scheme when the user typed none. Addresses on the local network
+// (private IPs, localhost, single-label or .local/.lan names) usually run
+// plain HTTP, like LM Studio front ends or Open WebUI at home; the rest of
+// the web gets HTTPS.
 export function normalizeUrl(url) {
     const u = String(url || '').trim();
     if (!u)
         return '';
-    return /^[a-z][a-z0-9+.-]*:\/\//i.test(u) ? u : `https://${u}`;
+    if (/^[a-z][a-z0-9+.-]*:\/\//i.test(u))
+        return u;
+    const host = u.replace(/^\[([^\]]+)\].*$/, '$1').split(/[/:?#]/)[0].toLowerCase();
+    const local = host === 'localhost' ||
+        /^(127|10)\.\d+\.\d+\.\d+$/.test(host) ||
+        /^192\.168\.\d+\.\d+$/.test(host) ||
+        /^172\.(1[6-9]|2\d|3[01])\.\d+\.\d+$/.test(host) ||
+        /^169\.254\.\d+\.\d+$/.test(host) ||
+        /^100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\.\d+\.\d+$/.test(host) ||   // Tailscale / CGNAT
+        /^(fd|fe80)/.test(host) || host.includes(':') ||
+        !host.includes('.') ||
+        /\.(local|lan|home|internal|localdomain|home\.arpa)$/.test(host);
+    return `${local ? 'http' : 'https'}://${u}`;
 }
