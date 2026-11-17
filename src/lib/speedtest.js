@@ -118,8 +118,8 @@ export class SpeedTest {
         const msg = Soup.Message.new('GET', this._server.down);
         try {
             const stream = await this._session.send_async(msg, GLib.PRIORITY_DEFAULT, cancellable);
-            if (msg.get_status() !== 200)
-                throw new Error(`HTTP ${msg.get_status()}`);
+            if (msg.status_code !== 200)
+                throw new Error(`HTTP ${msg.status_code}`);
             for (;;) {
                 const chunk = await stream.read_bytes_async(256 * 1024, GLib.PRIORITY_DEFAULT, cancellable);
                 const n = chunk.get_size();
@@ -141,8 +141,8 @@ export class SpeedTest {
             msg.connect('wrote-body-data', (_m, n) => add(n));
             try {
                 await this._session.send_and_read_async(msg, GLib.PRIORITY_DEFAULT, cancellable);
-                if (msg.get_status() >= 400)
-                    throw new Error(`HTTP ${msg.get_status()}`);
+                if (msg.status_code >= 400)
+                    throw new Error(`HTTP ${msg.status_code}`);
             } catch (e) {
                 if (isCancelled(e))
                     return;

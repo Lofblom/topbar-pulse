@@ -56,7 +56,8 @@ class Graph {
         const cr = area.get_context();
         const [w, h] = area.get_surface_size();
         const [r, g, b] = this.color;
-        cr.setSourceRGBA(1, 1, 1, 0.05);
+        const fg = area.get_theme_node().get_foreground_color();
+        cr.setSourceRGBA(fg.red / 255, fg.green / 255, fg.blue / 255, 0.06);
         cr.rectangle(0, 0, w, h);
         cr.fill();
         const n = this.data.length;
@@ -102,9 +103,10 @@ class CoreBars {
             const gap = 3;
             const bw = (w - gap * (n - 1)) / n;
             const [r, g, b] = COLORS.cpu;
+            const fg = area.get_theme_node().get_foreground_color();
             this.values.forEach((v, i) => {
                 const x = i * (bw + gap);
-                cr.setSourceRGBA(1, 1, 1, 0.08);
+                cr.setSourceRGBA(fg.red / 255, fg.green / 255, fg.blue / 255, 0.09);
                 cr.rectangle(x, 0, bw, h);
                 cr.fill();
                 const bh = clamp01(v / 100) * h;

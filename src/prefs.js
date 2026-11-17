@@ -176,7 +176,12 @@ export default class TopbarPulsePrefs extends ExtensionPreferences {
 
     _serviceIcon(svc) {
         if (svc.icon) {
-            const path = this.dir.get_child('icons').get_child('ai').get_child(svc.icon).get_path();
+            let name = svc.icon;
+            const dir = this.dir.get_child('icons').get_child('ai');
+            const lightName = name.replace(/\.svg$/, '-light.svg');
+            if (!Adw.StyleManager.get_default().dark && dir.get_child(lightName).query_exists(null))
+                name = lightName;
+            const path = dir.get_child(name).get_path();
             if (GLib.file_test(path, GLib.FileTest.EXISTS))
                 return new Gtk.Image({file: path, pixel_size: 20});
         }

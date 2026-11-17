@@ -165,6 +165,7 @@ export async function run(ext, dir) {
         await wait(12000);
         const qs = Main.panel.statusArea.quickSettings;
         console.log(`topbar-pulse selftest: gnome network icon hidden=${qs?._network ? !qs._network.visible : 'n/a'}`);
+        console.log(`topbar-pulse selftest: style variant=${typeof Main.getStyleVariant === 'function' ? Main.getStyleVariant() : 'no getStyleVariant'} schemeHandler=${!!ext._indicators.ai._schemeId}`);
         await shoot(`${dir}/panel-compact.png`);
         st.set_string('system-style', 'labels');
         st.set_string('ai-style', 'ring');

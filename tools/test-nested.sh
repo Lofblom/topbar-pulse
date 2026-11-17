@@ -23,6 +23,7 @@ export TOPBAR_PULSE_SELFTEST="$OUT" TOPBAR_PULSE_DEBUG=1
 dbus-run-session -- bash -c '
   gsettings set org.gnome.shell enabled-extensions "[\"'"$UUID"'\"]"
   gsettings set org.gnome.shell welcome-dialog-last-shown-version "999"
+  [ -n "${TOPBAR_PULSE_SCHEME:-}" ] && gsettings set org.gnome.desktop.interface color-scheme "$TOPBAR_PULSE_SCHEME"
   if [ -n "${TOPBAR_PULSE_BG:-}" ]; then
     gsettings set org.gnome.desktop.background picture-options "none"
     gsettings set org.gnome.desktop.background primary-color "$TOPBAR_PULSE_BG"

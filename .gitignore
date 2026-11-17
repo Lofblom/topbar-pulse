@@ -2,3 +2,5 @@ src/schemas/gschemas.compiled
 src/locale/
 dist/
 __pycache__/
+src/stylesheet-light.css
+src/stylesheet-dark.css

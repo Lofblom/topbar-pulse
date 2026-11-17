@@ -9,6 +9,7 @@ import St from 'gi://St';
 import Clutter from 'gi://Clutter';
 import Pango from 'gi://Pango';
 
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import {gettext as _} from 'resource:///org/gnome/shell/extensions/extension.js';
@@ -76,6 +77,15 @@ class AiIndicator extends PanelMenu.Button {
                 this._refresh(true);
             }));
         this._settingsIds.push(this._settings.connect('changed::ai-style', () => this._applyStyle()));
+        // follow a switch between light and dark style
+        try {
+            this._schemeId = St.Settings.get().connect('notify::color-scheme', () => {
+                this._buildOpenList();
+                this._render();
+            });
+        } catch {
+            this._schemeId = 0;
+        }
 
         this._timer = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 60, () => {
             const every = Math.max(2, this._settings.get_int('ai-refresh-minutes')) * 60;
@@ -150,9 +160,21 @@ class AiIndicator extends PanelMenu.Button {
 
     // ----------------------------------------------------------------- UI
 
+    // Light shell style: menus are light, so white logos use their dark
+    // "-light" variant (named for the light surface they go on).
+    _lightMenus() {
+        return typeof Main.getStyleVariant === 'function' && Main.getStyleVariant() === 'light';
+    }
+
     _badge(service, size = 16) {
         if (service.icon) {
-            const file = this._ext.dir.get_child('icons').get_child('ai').get_child(service.icon);
+            const dir = this._ext.dir.get_child('icons').get_child('ai');
+            let file = dir.get_child(service.icon);
+            if (this._lightMenus()) {
+                const light = dir.get_child(service.icon.replace(/\.svg$/, '-light.svg'));
+                if (light.query_exists(null))
+                    file = light;
+            }
             if (file.query_exists(null))
                 return new St.Icon({gicon: new Gio.FileIcon({file}), icon_size: size});
         }
@@ -292,6 +314,8 @@ class AiIndicator extends PanelMenu.Button {
         this._timer = this._startupId = 0;
         for (const id of this._settingsIds)
             this._settings.disconnect(id);
+        if (this._schemeId)
+            St.Settings.get().disconnect(this._schemeId);
         super.destroy();
     }
 });

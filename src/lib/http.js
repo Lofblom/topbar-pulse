@@ -40,5 +40,5 @@ export async function fetchJson(session, url, {headers = {}, method = 'GET', bod
     try {
         data = JSON.parse(text);
     } catch {}
-    return {status: msg.get_status(), data, text, headers: msg.response_headers};
+    return {status: msg.status_code, data, text, headers: msg.response_headers};
 }

@@ -12,6 +12,7 @@ UUID=$(python3 -c 'import json;print(json.load(open("src/metadata.json"))["uuid"
 DOMAIN=topbar-pulse
 
 compile() {
+  python3 tools/make_light_css.py
   glib-compile-schemas --strict src/schemas/
   rm -rf src/locale
   for po in po/*.po; do
