@@ -37,6 +37,9 @@ for y in $(seq 10 90); do
   [ "$rgb" = "$BGRGB" ] && { bar=$y; break; }
 done
 magick "$RAW/prefs.png" -crop "+0+$bar" +repage -fuzz 1% -trim +repage "$OUT/prefs.png"
+# one picture with the three menus side by side, same scale (for extensions.gnome.org)
+magick "$OUT/system.png" "$OUT/ai.png" "$OUT/network.png" -bordercolor "$BG" -border 14 \
+  -background "$BG" -gravity north +append -border 10 -resize '1920x>' "$OUT/overview.png"
 for f in "$OUT"/*.png; do magick "$f" -strip -define png:compression-level=9 "$f"; done
 rm -rf "$RAW"
 ls -la "$OUT"

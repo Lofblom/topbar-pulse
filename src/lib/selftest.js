@@ -78,7 +78,11 @@ async function runDemo(ext, dir) {
     st.set_boolean('tighten-top-bar', true);
     const ind = ext._indicators;
     await demoNetwork(ind.network);
-    await wait(10000);
+    await wait(6000);
+    // wait until the Claude limits have arrived so every shot shows them
+    for (let i = 0; i < 40 && !(ind.ai._usage.claude?.limits?.length); i++)
+        await wait(1000);
+    await wait(2000);
     hideDevkitClutter();
     await wait(1500);
     for (const style of ['compact', 'labels', 'bars']) {
@@ -104,6 +108,9 @@ async function runDemo(ext, dir) {
     await wait(800);
 
     const net = ind.network;
+    await net._poll(false);
+    await net._checkPublicIp();
+    await net._checkDns();
     net.menu.open(false);
     await wait(5000);
     net._speedtest();

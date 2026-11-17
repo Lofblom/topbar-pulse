@@ -176,8 +176,9 @@ class NetworkIndicator extends PanelMenu.Button {
                 this._client.connect('active-connection-removed', () => this._networkChanged()),
             ];
         }
-        this._poll(false);
         this._syncGnomeIcon();
+        // the VPN state must be known before the public IP is judged
+        await this._poll(false);
         this._checkPublicIp();
     }
 
@@ -187,8 +188,7 @@ class NetworkIndicator extends PanelMenu.Button {
             GLib.source_remove(this._changeId);
         this._changeId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 4, () => {
             this._changeId = 0;
-            this._poll(false);
-            this._checkPublicIp();
+            this._poll(false).then(() => this._checkPublicIp());
             return GLib.SOURCE_REMOVE;
         });
     }
@@ -273,18 +273,18 @@ class NetworkIndicator extends PanelMenu.Button {
         return s;
     }
 
-    async _poll(open) {
-        if (this._polling)
-            return;
-        this._polling = true;
-        try {
-            await this._pollAsync(open);
-        } catch (e) {
-            if (!isCancelled(e))
-                console.warn(`Topbar Pulse: network poll: ${e.message}`);
-        } finally {
-            this._polling = false;
+    // One poll at a time; a caller arriving mid-poll waits for that one, so
+    // whoever awaits _poll() always sees fresh status (including the VPN).
+    _poll(open) {
+        if (!this._pollPromise) {
+            this._pollPromise = this._pollAsync(open).catch(e => {
+                if (!isCancelled(e))
+                    console.warn(`Topbar Pulse: network poll: ${e.message}`);
+            }).finally(() => {
+                this._pollPromise = null;
+            });
         }
+        return this._pollPromise;
     }
 
     async _pollAsync(open) {
