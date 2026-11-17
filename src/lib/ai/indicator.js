@@ -51,6 +51,10 @@ class AiIndicator extends PanelMenu.Button {
 
         this._usageSection = new PopupMenu.PopupMenuSection();
         this.menu.addMenuItem(this._usageSection);
+        this._limitsHint = new PopupMenu.PopupMenuItem(_('Show your subscription limits…'));
+        this._limitsHint.label.add_style_class_name('tp-dim');
+        this._limitsHint.connect('activate', () => ext.openPreferences());
+        this.menu.addMenuItem(this._limitsHint);
         this._openSep = new PopupMenu.PopupSeparatorMenuItem(_('Open'));
         this.menu.addMenuItem(this._openSep);
         this._openSection = new PopupMenu.PopupMenuSection();
@@ -64,7 +68,7 @@ class AiIndicator extends PanelMenu.Button {
                 this._refresh(false);
         });
 
-        this._settingsIds = ['ai-services', 'ai-custom-services', 'ai-open-mode', 'ai-track-usage']
+        this._settingsIds = ['ai-services', 'ai-custom-services', 'ai-open-mode', 'ai-usage-claude', 'ai-usage-codex', 'ai-usage-copilot']
             .map(k => this._settings.connect(`changed::${k}`, () => {
                 this._buildOpenList();
                 this._render();
@@ -106,8 +110,8 @@ class AiIndicator extends PanelMenu.Button {
             return;
         this._busy = true;
         this._lastRefresh = now;
-        const track = this._settings.get_boolean('ai-track-usage');
-        const readers = track ? [...new Set(this._services().map(s => s.usage).filter(Boolean))] : [];
+        const readers = [...new Set(this._services().map(s => s.usage).filter(Boolean))]
+            .filter(id => this._settings.get_boolean(`ai-usage-${id}`));
         debug('refresh readers', readers.join(','));
         const jobs = readers.map(async id => {
             try {
@@ -203,6 +207,9 @@ class AiIndicator extends PanelMenu.Button {
             item.add_child(col);
             this._usageSection.addMenuItem(item);
         }
+        const offered = services.some(svc => svc.usage);
+        const anyOn = services.some(svc => svc.usage && this._settings.get_boolean(`ai-usage-${svc.usage}`));
+        this._limitsHint.visible = offered && !anyOn;
         this._maxPct = maxPct;
         this._barLabel.text = maxPct >= 0 ? `${Math.round(maxPct * 100)}%` : '';
         this._applyStyle();

@@ -17,10 +17,18 @@ export function newSession(timeout = 15) {
 
 // GET (or POST with a JSON body) and parse JSON. Never throws for HTTP
 // errors: returns {status, data, text}.
-export async function fetchJson(session, url, {headers = {}, method = 'GET', body = null, cancellable = null} = {}) {
+//
+// credentials: true marks a request that carries a sign-in token. It must
+// use HTTPS (libsoup verifies the certificate against the system store) and
+// never follows redirects, so the token can only reach the host named here.
+export async function fetchJson(session, url, {headers = {}, method = 'GET', body = null, cancellable = null, credentials = false} = {}) {
+    if (credentials && !url.startsWith('https://'))
+        throw new Error('Refusing to send a sign-in over plain HTTP');
     const msg = Soup.Message.new(method, url);
     if (!msg)
         throw new Error(`Invalid URL: ${url}`);
+    if (credentials)
+        msg.set_flags(msg.get_flags() | Soup.MessageFlags.NO_REDIRECT);
     msg.request_headers.append('Accept', 'application/json');
     for (const [k, v] of Object.entries(headers))
         msg.request_headers.append(k, v);

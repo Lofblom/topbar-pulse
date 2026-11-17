@@ -2,8 +2,10 @@
 
 System monitor, network details and AI usage in the GNOME top bar.
 
-Works on any GNOME 48–51 desktop. No other software is needed beyond what a
-normal GNOME install already has (NetworkManager, libsoup, gjs).
+Tested on GNOME 51. It will probably also work on GNOME 48–50 (it only uses
+APIs that exist there), but that is not tested yet — reports are welcome.
+No other software is needed beyond what a normal GNOME install already has
+(NetworkManager, libsoup, gjs).
 
 ![The top bar in the three styles: colour-coded numbers, text with labels, and small bars with the AI ring](docs/screenshots/panel.png)
 
@@ -46,27 +48,44 @@ servers, ping to router and internet, and live traffic. Plus:
 
 - Open Claude, ChatGPT, Gemini, GitHub Copilot, Microsoft Copilot, Grok,
   Le Chat, Perplexity, DeepSeek, Meta AI, Qwen, Kimi, Lumo, HuggingChat,
-  OpenRouter — or add your own — as an **app window** (Chromium-based
-  browsers) or a **browser tab**. Services with a CLI (`claude`, `codex`,
-  `gemini`, `copilot` …) get a terminal button.
-- **Limits** for Claude Code (session, week, model-specific), Codex/ChatGPT
-  and GitHub Copilot premium requests, read with the sign-in those official
-  CLIs already keep on the computer.
+  OpenRouter — or add your own, including a local server like Open WebUI —
+  as an **app window** (Chromium-based browsers) or a **browser tab**.
+  Services with a CLI (`claude`, `codex`, `gemini`, `copilot` …) get a
+  terminal button.
+- **Limits** (opt-in, one switch per service) for Claude Code (session,
+  week, model-specific), Codex/ChatGPT and GitHub Copilot premium requests,
+  read with the sign-in those official CLIs already keep on the computer.
 - **Today's Claude Code tokens**, split into new tokens and tokens re-read
   from the prompt cache (which otherwise make the totals look huge).
 
 Everything can be switched on or off in the preferences.
 
-## Privacy
+## Privacy and sign-ins
 
 Nothing is collected or sent to the author. The extension talks to:
 
 | When | Service | What it learns |
 |---|---|---|
-| Public IP check (can be turned off) | ipleak.net | your public IP |
-| DNS leak check (can be turned off) | bash.ws | your public IP and DNS resolvers |
+| Public IP check (on by default, can be turned off) | ipleak.net | your public IP |
+| DNS leak check (same switch) | bash.ws | your public IP and DNS resolvers |
 | Speed test (only when you press it) | Tele2 / Hetzner, Cloudflare | your public IP |
-| AI limits (can be turned off) | Anthropic, OpenAI (through the Codex CLI), GitHub | the same requests their own CLIs make |
+| Claude limits (off until you turn it on) | api.anthropic.com | the same request Claude Code makes |
+| Codex limits (off until you turn it on) | OpenAI, through the Codex CLI | the same request the Codex CLI makes |
+| Copilot limits (off until you turn it on) | api.github.com | the same request the Copilot CLI makes |
+
+**How sign-ins are handled.** The subscription limits use the sign-in the
+official CLIs (Claude Code, Codex, GitHub CLI) already keep on your
+computer. Topbar Pulse reads it only at the moment of a request and keeps it
+in memory just for that request. It is never stored, cached, logged or shown,
+and it is only sent as an `Authorization` header to the provider's fixed
+HTTPS address — with certificate verification and with redirects disabled,
+so it cannot be passed on to another host. For Codex the extension never
+sees the sign-in at all: the Codex CLI's own app-server makes the request.
+
+**Unofficial interfaces.** The Claude and Copilot usage endpoints are not
+public APIs. They are what the official tools use themselves; they may
+change or stop working without notice, and they are used at your own
+discretion. That is why these readers are off by default.
 
 ## Install
 

@@ -1,6 +1,15 @@
-// Usage readers for AI subscriptions. Each reads the sign-in the official
-// CLI already keeps on this machine and asks the provider for the current
-// limits. Nothing is stored or sent anywhere else.
+// Usage readers for AI subscriptions. Each is off until the user turns it on
+// in the preferences. A reader uses the sign-in the official CLI already
+// keeps on this machine and asks only that provider for the current limits.
+//
+// How sign-ins are handled:
+//  - read at the moment of the request, kept only in a local variable,
+//    never stored, cached, logged or shown;
+//  - sent only as an Authorization header to the provider's fixed HTTPS
+//    address, with certificate checks and no redirects (http.js);
+//  - Codex: the extension never sees the sign-in at all; the Codex CLI's
+//    own app-server makes the request.
+// The Claude and Copilot endpoints are unofficial and may change.
 //
 // A reader returns null when the service is not set up here, otherwise
 //   {plan, limits: [{title, percent (0–1), resetsAt}], note, stale}
@@ -69,6 +78,7 @@ export async function claudeUsage(session, cancellable) {
 
     const {status, data} = await fetchJson(session, CLAUDE_USAGE, {
         cancellable,
+        credentials: true,
         headers: {'Authorization': `Bearer ${creds.accessToken}`, 'anthropic-beta': 'oauth-2025-04-20'},
     });
     if (status === 401 || status === 403)
@@ -252,6 +262,7 @@ export async function copilotUsage(session, cancellable) {
         return null;
     const {status, data} = await fetchJson(session, 'https://api.github.com/copilot_internal/user', {
         cancellable,
+        credentials: true,
         headers: {'Authorization': `Bearer ${token}`},
     });
     if (status === 401 || status === 404)

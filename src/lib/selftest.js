@@ -72,6 +72,8 @@ async function demoNetwork(net) {
 async function runDemo(ext, dir) {
     const st = ext.getSettings();
     st.set_strv('ai-services', ['claude', 'chatgpt', 'gemini', 'copilot', 'mistral', 'perplexity']);
+    for (const id of ['claude', 'codex', 'copilot'])
+        st.set_boolean(`ai-usage-${id}`, true);
     st.set_string('ai-custom-services', JSON.stringify([{id: 'custom-demo', name: 'Open WebUI (local)', url: 'http://localhost:3000', cli: ''}]));
     st.set_boolean('tighten-top-bar', true);
     const ind = ext._indicators;
@@ -152,6 +154,14 @@ export async function run(ext, dir) {
     const st = ext.getSettings();
     try {
         st.set_string('ai-custom-services', JSON.stringify([{id: 'custom-test', name: 'Aider', url: '', cli: 'aider'}]));
+        await wait(8000);
+        // defaults: limits are off, the menu offers to turn them on
+        ext._indicators.ai.menu.open(false);
+        await wait(2500);
+        await shoot(`${dir}/menu-ai-off.png`);
+        ext._indicators.ai.menu.close(false);
+        for (const id of ['claude', 'codex', 'copilot'])
+            st.set_boolean(`ai-usage-${id}`, true);
         await wait(12000);
         const qs = Main.panel.statusArea.quickSettings;
         console.log(`topbar-pulse selftest: gnome network icon hidden=${qs?._network ? !qs._network.visible : 'n/a'}`);

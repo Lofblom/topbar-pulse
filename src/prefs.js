@@ -96,10 +96,15 @@ export default class TopbarPulsePrefs extends ExtensionPreferences {
         page.add(behaviour);
 
         const usage = new Adw.PreferencesGroup({
-            title: _('Usage'),
-            description: _('Limits are read with the sign-in the official command-line tools already keep on this computer (Claude Code, Codex, GitHub CLI). Nothing is stored or sent anywhere else.'),
+            title: _('Subscription limits'),
+            description: _('Off until you turn them on. Each one uses the sign-in that the official command-line tool already keeps on this computer and asks only that company. The sign-in is never stored, logged or sent anywhere else, only over HTTPS with certificate checks and without redirects. The Claude and Copilot interfaces are unofficial and may stop working.'),
         });
-        usage.add(switchRow(settings, 'ai-track-usage', _('Show subscription limits')));
+        usage.add(switchRow(settings, 'ai-usage-claude', _('Claude Code'),
+            _('Reads ~/.claude/.credentials.json and asks api.anthropic.com')));
+        usage.add(switchRow(settings, 'ai-usage-codex', _('ChatGPT / Codex'),
+            _('Asks the Codex CLI itself; Topbar Pulse never sees the sign-in')));
+        usage.add(switchRow(settings, 'ai-usage-copilot', _('GitHub Copilot'),
+            _('Runs “gh auth token” and asks api.github.com')));
         const spin = new Adw.SpinRow({
             title: _('Update every (minutes)'),
             adjustment: new Gtk.Adjustment({lower: 2, upper: 120, step_increment: 1}),

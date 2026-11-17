@@ -39,9 +39,17 @@
       <default>'app'</default>
       <summary>Open web AI services as an app window or a browser tab</summary>
     </key>
-    <key name="ai-track-usage" type="b">
-      <default>true</default>
-      <summary>Read subscription limits from the CLIs signed in on this computer</summary>
+    <key name="ai-usage-claude" type="b">
+      <default>false</default>
+      <summary>Read Claude limits with Claude Code's sign-in (asks api.anthropic.com)</summary>
+    </key>
+    <key name="ai-usage-codex" type="b">
+      <default>false</default>
+      <summary>Read ChatGPT/Codex limits through the Codex CLI</summary>
+    </key>
+    <key name="ai-usage-copilot" type="b">
+      <default>false</default>
+      <summary>Read Copilot limits with the GitHub CLI's sign-in (asks api.github.com)</summary>
     </key>
     <key name="ai-refresh-minutes" type="i">
       <range min="2" max="120"/>

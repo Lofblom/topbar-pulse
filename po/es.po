@@ -14,6 +14,9 @@ msgstr ""
 msgid "AI"
 msgstr "IA"
 
+msgid "Show your subscription limits…"
+msgstr "Mostrar tus límites de suscripción…"
+
 msgid "Open"
 msgstr "Abrir"
 
@@ -461,14 +464,29 @@ msgstr "Pestaña del navegador"
 msgid "App windows need Chromium, Chrome, Brave, Edge or Vivaldi; otherwise a tab is used. Services with a command-line tool get a terminal button in the menu."
 msgstr "Las ventanas de aplicación necesitan Chromium, Chrome, Brave, Edge o Vivaldi; si no, se usa una pestaña. Los servicios con herramienta de línea de comandos tienen un botón de terminal en el menú."
 
-msgid "Usage"
-msgstr "Uso"
+msgid "Subscription limits"
+msgstr "Límites de suscripción"
 
-msgid "Limits are read with the sign-in the official command-line tools already keep on this computer (Claude Code, Codex, GitHub CLI). Nothing is stored or sent anywhere else."
-msgstr "Los límites se leen con la sesión que las herramientas oficiales de línea de comandos ya guardan en este equipo (Claude Code, Codex, GitHub CLI). No se guarda ni se envía nada a ningún otro sitio."
+msgid "Off until you turn them on. Each one uses the sign-in that the official command-line tool already keeps on this computer and asks only that company. The sign-in is never stored, logged or sent anywhere else, only over HTTPS with certificate checks and without redirects. The Claude and Copilot interfaces are unofficial and may stop working."
+msgstr "Desactivados hasta que los actives. Cada uno usa la sesión que la herramienta oficial de línea de comandos ya guarda en este equipo y solo consulta a esa empresa. La sesión nunca se guarda, se registra ni se envía a otro sitio; solo por HTTPS con verificación de certificado y sin redirecciones. Las interfaces de Claude y Copilot no son oficiales y pueden dejar de funcionar."
 
-msgid "Show subscription limits"
-msgstr "Mostrar límites de suscripción"
+msgid "Claude Code"
+msgstr "Claude Code"
+
+msgid "Reads ~/.claude/.credentials.json and asks api.anthropic.com"
+msgstr "Lee ~/.claude/.credentials.json y consulta api.anthropic.com"
+
+msgid "ChatGPT / Codex"
+msgstr "ChatGPT / Codex"
+
+msgid "Asks the Codex CLI itself; Topbar Pulse never sees the sign-in"
+msgstr "Consulta a la propia CLI de Codex; Topbar Pulse nunca ve la sesión"
+
+msgid "GitHub Copilot"
+msgstr "GitHub Copilot"
+
+msgid "Runs “gh auth token” and asks api.github.com"
+msgstr "Ejecuta «gh auth token» y consulta api.github.com"
 
 msgid "Update every (minutes)"
 msgstr "Actualizar cada (minutos)"
@@ -635,8 +653,14 @@ msgstr "Servicios de IA añadidos en JSON: [{id, name, url, cli}]"
 msgid "Open web AI services as an app window or a browser tab"
 msgstr "Abrir servicios web de IA como ventana de aplicación o pestaña"
 
-msgid "Read subscription limits from the CLIs signed in on this computer"
-msgstr "Leer los límites de suscripción de las CLI con sesión iniciada en este equipo"
+msgid "Read Claude limits with Claude Code's sign-in (asks api.anthropic.com)"
+msgstr "Leer los límites de Claude con la sesión de Claude Code (consulta api.anthropic.com)"
+
+msgid "Read ChatGPT/Codex limits through the Codex CLI"
+msgstr "Leer los límites de ChatGPT/Codex a través de la CLI de Codex"
+
+msgid "Read Copilot limits with the GitHub CLI's sign-in (asks api.github.com)"
+msgstr "Leer los límites de Copilot con la sesión de GitHub CLI (consulta api.github.com)"
 
 msgid "Minutes between usage updates"
 msgstr "Minutos entre actualizaciones del uso"
