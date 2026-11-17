@@ -54,6 +54,7 @@ servers, ping to router and internet, and live traffic. Plus:
 The menu names each device and its port; console cables (FTDI, Prolific,
 CH340, CP210x, Cisco …) show their `/dev/ttyUSB…` path — click to copy it,
 or open a serial console (`tio`, `picocom`, `minicom` or `screen`).
+Clicking only *writes* the path to the clipboard; the clipboard is never read.
 
 **AI** — quick launch and subscription limits:
 
