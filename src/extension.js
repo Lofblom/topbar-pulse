@@ -10,8 +10,10 @@ import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 import {SystemIndicator} from './lib/system.js';
 import {NetworkIndicator} from './lib/network.js';
 import {AiIndicator} from './lib/ai/indicator.js';
+import {UsbIndicator} from './lib/usb.js';
 
 const INDICATORS = [
+    ['usb', 'show-usb', UsbIndicator],
     ['system', 'show-system', SystemIndicator],
     ['ai', 'show-ai', AiIndicator],
     ['network', 'show-network', NetworkIndicator],

@@ -927,3 +927,33 @@ _NEW = {
 }
 for _lang, _tab in _NEW.items():
     {'sv': SV, 'de': DE, 'fr': FR, 'es': ES}[_lang].update(_tab)
+
+# ---- USB indicator
+_USB = {
+'sv': {"USB devices": "USB-enheter", "port %s": "port %s", "USB device": "USB-enhet", "Open console on %s": "Öppna konsol på %s",
+       "No serial console program found. Install tio, picocom, minicom or screen.": "Inget program för seriell konsol hittades. Installera tio, picocom, minicom eller screen.",
+       "Only shown while something is plugged in. Console cables show their /dev path and open a serial console.": "Visas bara när något är inkopplat. Konsolkablar visar sin /dev-sökväg och öppnar en seriell konsol.",
+       "Serial console speed": "Hastighet för seriell konsol",
+       "Show connected USB devices (only while something is plugged in)": "Visa inkopplade USB-enheter (bara när något är inkopplat)",
+       "Speed (baud) for the serial console": "Hastighet (baud) för den seriella konsolen"},
+'de': {"USB devices": "USB-Geräte", "port %s": "Anschluss %s", "USB device": "USB-Gerät", "Open console on %s": "Konsole auf %s öffnen",
+       "No serial console program found. Install tio, picocom, minicom or screen.": "Kein Programm für die serielle Konsole gefunden. Installiere tio, picocom, minicom oder screen.",
+       "Only shown while something is plugged in. Console cables show their /dev path and open a serial console.": "Wird nur angezeigt, wenn etwas eingesteckt ist. Konsolenkabel zeigen ihren /dev-Pfad und öffnen eine serielle Konsole.",
+       "Serial console speed": "Geschwindigkeit der seriellen Konsole",
+       "Show connected USB devices (only while something is plugged in)": "Angeschlossene USB-Geräte anzeigen (nur wenn etwas eingesteckt ist)",
+       "Speed (baud) for the serial console": "Geschwindigkeit (Baud) der seriellen Konsole"},
+'fr': {"USB devices": "Périphériques USB", "port %s": "port %s", "USB device": "Périphérique USB", "Open console on %s": "Ouvrir une console sur %s",
+       "No serial console program found. Install tio, picocom, minicom or screen.": "Aucun programme de console série trouvé. Installez tio, picocom, minicom ou screen.",
+       "Only shown while something is plugged in. Console cables show their /dev path and open a serial console.": "Affiché seulement quand quelque chose est branché. Les câbles console affichent leur chemin /dev et ouvrent une console série.",
+       "Serial console speed": "Vitesse de la console série",
+       "Show connected USB devices (only while something is plugged in)": "Afficher les périphériques USB branchés (seulement quand quelque chose est branché)",
+       "Speed (baud) for the serial console": "Vitesse (bauds) de la console série"},
+'es': {"USB devices": "Dispositivos USB", "port %s": "puerto %s", "USB device": "Dispositivo USB", "Open console on %s": "Abrir consola en %s",
+       "No serial console program found. Install tio, picocom, minicom or screen.": "No se encontró ningún programa de consola serie. Instala tio, picocom, minicom o screen.",
+       "Only shown while something is plugged in. Console cables show their /dev path and open a serial console.": "Solo se muestra cuando hay algo conectado. Los cables de consola muestran su ruta /dev y abren una consola serie.",
+       "Serial console speed": "Velocidad de la consola serie",
+       "Show connected USB devices (only while something is plugged in)": "Mostrar los dispositivos USB conectados (solo cuando hay algo conectado)",
+       "Speed (baud) for the serial console": "Velocidad (baudios) de la consola serie"},
+}
+for _lang, _tab in _USB.items():
+    {'sv': SV, 'de': DE, 'fr': FR, 'es': ES}[_lang].update(_tab)

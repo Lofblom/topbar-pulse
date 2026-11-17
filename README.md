@@ -50,6 +50,11 @@ servers, ping to router and internet, and live traffic. Plus:
 - **Share Wi-Fi** as a QR code your phone can scan.
 - Can hide GNOME's own network icon so there is only one.
 
+**USB** — a small icon that only appears while something is plugged in.
+The menu names each device and its port; console cables (FTDI, Prolific,
+CH340, CP210x, Cisco …) show their `/dev/ttyUSB…` path — click to copy it,
+or open a serial console (`tio`, `picocom`, `minicom` or `screen`).
+
 **AI** — quick launch and subscription limits:
 
 - Open Claude, ChatGPT, Gemini, GitHub Copilot, Microsoft Copilot, Grok,

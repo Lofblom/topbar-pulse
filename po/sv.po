@@ -353,6 +353,21 @@ msgstr "Mäter…"
 msgid "%s %% RAM"
 msgstr "%s %% RAM"
 
+msgid "USB devices"
+msgstr "USB-enheter"
+
+msgid "USB device"
+msgstr "USB-enhet"
+
+msgid "port %s"
+msgstr "port %s"
+
+msgid "Open console on %s"
+msgstr "Öppna konsol på %s"
+
+msgid "No serial console program found. Install tio, picocom, minicom or screen."
+msgstr "Inget program för seriell konsol hittades. Installera tio, picocom, minicom eller screen."
+
 msgid "Could not start %s: %s"
 msgstr "Kunde inte starta %s: %s"
 
@@ -388,6 +403,12 @@ msgstr "Prenumerationsgränser och snabbstart"
 
 msgid "Wi-Fi, public IP, VPN, DNS and speed test"
 msgstr "Wi-Fi, publik IP, VPN, DNS och hastighetstest"
+
+msgid "Only shown while something is plugged in. Console cables show their /dev path and open a serial console."
+msgstr "Visas bara när något är inkopplat. Konsolkablar visar sin /dev-sökväg och öppnar en seriell konsol."
+
+msgid "Serial console speed"
+msgstr "Hastighet för seriell konsol"
 
 msgid "Tighter top bar"
 msgstr "Tätare toppfält"
@@ -619,6 +640,12 @@ msgstr "Visa AI-indikatorn"
 
 msgid "Show the network indicator"
 msgstr "Visa nätverksindikatorn"
+
+msgid "Show connected USB devices (only while something is plugged in)"
+msgstr "Visa inkopplade USB-enheter (bara när något är inkopplat)"
+
+msgid "Speed (baud) for the serial console"
+msgstr "Hastighet (baud) för den seriella konsolen"
 
 msgid "Less space between all icons on the right of the top bar"
 msgstr "Mindre mellanrum mellan alla ikoner till höger i toppfältet"

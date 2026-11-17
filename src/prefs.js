@@ -53,6 +53,17 @@ export default class TopbarPulsePrefs extends ExtensionPreferences {
         show.add(switchRow(settings, 'show-system', _('System monitor'), _('CPU, GPU, memory, disk, sensors, processes')));
         show.add(switchRow(settings, 'show-ai', _('AI'), _('Subscription limits and quick launch')));
         show.add(switchRow(settings, 'show-network', _('Network'), _('Wi-Fi, public IP, VPN, DNS and speed test')));
+        show.add(switchRow(settings, 'show-usb', _('USB devices'),
+            _('Only shown while something is plugged in. Console cables show their /dev path and open a serial console.')));
+        const bauds = [1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200];
+        const baudRow = new Adw.ComboRow({
+            title: _('Serial console speed'),
+            model: Gtk.StringList.new(bauds.map(b => `${b} baud`)),
+        });
+        baudRow.selected = Math.max(0, bauds.indexOf(settings.get_int('usb-baud')));
+        baudRow.connect('notify::selected', () => settings.set_int('usb-baud', bauds[baudRow.selected] ?? 9600));
+        settings.bind('show-usb', baudRow, 'sensitive', Gio.SettingsBindFlags.GET);
+        show.add(baudRow);
         show.add(switchRow(settings, 'tighten-top-bar', _('Tighter top bar'),
             _('Less space between all icons on the right side of the top bar')));
         page.add(show);

@@ -353,6 +353,21 @@ msgstr "Midiendo…"
 msgid "%s %% RAM"
 msgstr "%s %% de RAM"
 
+msgid "USB devices"
+msgstr "Dispositivos USB"
+
+msgid "USB device"
+msgstr "Dispositivo USB"
+
+msgid "port %s"
+msgstr "puerto %s"
+
+msgid "Open console on %s"
+msgstr "Abrir consola en %s"
+
+msgid "No serial console program found. Install tio, picocom, minicom or screen."
+msgstr "No se encontró ningún programa de consola serie. Instala tio, picocom, minicom o screen."
+
 msgid "Could not start %s: %s"
 msgstr "No se pudo iniciar %s: %s"
 
@@ -388,6 +403,12 @@ msgstr "Límites de suscripción y acceso rápido"
 
 msgid "Wi-Fi, public IP, VPN, DNS and speed test"
 msgstr "Wi-Fi, IP pública, VPN, DNS y test de velocidad"
+
+msgid "Only shown while something is plugged in. Console cables show their /dev path and open a serial console."
+msgstr "Solo se muestra cuando hay algo conectado. Los cables de consola muestran su ruta /dev y abren una consola serie."
+
+msgid "Serial console speed"
+msgstr "Velocidad de la consola serie"
 
 msgid "Tighter top bar"
 msgstr "Barra superior más compacta"
@@ -619,6 +640,12 @@ msgstr "Mostrar el indicador de IA"
 
 msgid "Show the network indicator"
 msgstr "Mostrar el indicador de red"
+
+msgid "Show connected USB devices (only while something is plugged in)"
+msgstr "Mostrar los dispositivos USB conectados (solo cuando hay algo conectado)"
+
+msgid "Speed (baud) for the serial console"
+msgstr "Velocidad (baudios) de la consola serie"
 
 msgid "Less space between all icons on the right of the top bar"
 msgstr "Menos espacio entre todos los iconos a la derecha de la barra superior"

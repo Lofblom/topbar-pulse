@@ -6,6 +6,12 @@
     <key name="show-system" type="b"><default>true</default><summary>Show the system monitor</summary></key>
     <key name="show-ai" type="b"><default>true</default><summary>Show the AI indicator</summary></key>
     <key name="show-network" type="b"><default>true</default><summary>Show the network indicator</summary></key>
+    <key name="show-usb" type="b"><default>true</default><summary>Show connected USB devices (only while something is plugged in)</summary></key>
+    <key name="usb-baud" type="i">
+      <range min="300" max="4000000"/>
+      <default>9600</default>
+      <summary>Speed (baud) for the serial console</summary>
+    </key>
     <key name="tighten-top-bar" type="b"><default>false</default><summary>Less space between all icons on the right of the top bar</summary></key>
 
     <!-- system monitor -->

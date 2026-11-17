@@ -353,6 +353,21 @@ msgstr "Messe…"
 msgid "%s %% RAM"
 msgstr "%s %% RAM"
 
+msgid "USB devices"
+msgstr "USB-Geräte"
+
+msgid "USB device"
+msgstr "USB-Gerät"
+
+msgid "port %s"
+msgstr "Anschluss %s"
+
+msgid "Open console on %s"
+msgstr "Konsole auf %s öffnen"
+
+msgid "No serial console program found. Install tio, picocom, minicom or screen."
+msgstr "Kein Programm für die serielle Konsole gefunden. Installiere tio, picocom, minicom oder screen."
+
 msgid "Could not start %s: %s"
 msgstr "%s konnte nicht gestartet werden: %s"
 
@@ -388,6 +403,12 @@ msgstr "Abo-Limits und Schnellstart"
 
 msgid "Wi-Fi, public IP, VPN, DNS and speed test"
 msgstr "WLAN, öffentliche IP, VPN, DNS und Geschwindigkeitstest"
+
+msgid "Only shown while something is plugged in. Console cables show their /dev path and open a serial console."
+msgstr "Wird nur angezeigt, wenn etwas eingesteckt ist. Konsolenkabel zeigen ihren /dev-Pfad und öffnen eine serielle Konsole."
+
+msgid "Serial console speed"
+msgstr "Geschwindigkeit der seriellen Konsole"
 
 msgid "Tighter top bar"
 msgstr "Kompaktere obere Leiste"
@@ -619,6 +640,12 @@ msgstr "KI-Anzeige anzeigen"
 
 msgid "Show the network indicator"
 msgstr "Netzwerkanzeige anzeigen"
+
+msgid "Show connected USB devices (only while something is plugged in)"
+msgstr "Angeschlossene USB-Geräte anzeigen (nur wenn etwas eingesteckt ist)"
+
+msgid "Speed (baud) for the serial console"
+msgstr "Geschwindigkeit (Baud) der seriellen Konsole"
 
 msgid "Less space between all icons on the right of the top bar"
 msgstr "Weniger Abstand zwischen allen Symbolen rechts in der oberen Leiste"

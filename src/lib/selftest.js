@@ -246,6 +246,14 @@ export async function run(ext, dir) {
             ind[name].menu.close(false);
             await wait(1000);
         }
+        const usb = ext._indicators.usb;
+        console.log(`topbar-pulse selftest: usb visible=${usb?.visible} items=${usb?.menu._getMenuItems().length}`);
+        if (usb?.visible) {
+            usb.menu.open(false);
+            await wait(2000);
+            await shoot(`${dir}/menu-usb.png`);
+            usb.menu.close(false);
+        }
         ext.openPreferences();
         await wait(7000);
         await shoot(`${dir}/prefs.png`);
