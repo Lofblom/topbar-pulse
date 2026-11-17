@@ -23,7 +23,14 @@ export TOPBAR_PULSE_SELFTEST="$OUT" TOPBAR_PULSE_DEBUG=1
 dbus-run-session -- bash -c '
   gsettings set org.gnome.shell enabled-extensions "[\"'"$UUID"'\"]"
   gsettings set org.gnome.shell welcome-dialog-last-shown-version "999"
-  XDG_SESSION_TYPE=wayland gnome-shell --devkit --wayland > "'"$OUT"'/shell.log" 2>&1 &
+  if [ -n "${TOPBAR_PULSE_BG:-}" ]; then
+    gsettings set org.gnome.desktop.background picture-options "none"
+    gsettings set org.gnome.desktop.background primary-color "$TOPBAR_PULSE_BG"
+    gsettings set org.gnome.desktop.background picture-uri ""
+    gsettings set org.gnome.desktop.background picture-uri-dark ""
+    gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+  fi
+  XDG_SESSION_TYPE=wayland gnome-shell --devkit ${TOPBAR_PULSE_SIZE:+--devkit-args="--monitor-size=$TOPBAR_PULSE_SIZE"} --wayland > "'"$OUT"'/shell.log" 2>&1 &
   pid=$!
   for i in $(seq 1 120); do [ -f "'"$OUT"'/done.png" ] && break; sleep 1; done
   sleep 1

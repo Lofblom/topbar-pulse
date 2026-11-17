@@ -5,6 +5,18 @@ System monitor, network details and AI usage in the GNOME top bar.
 Works on any GNOME 48–51 desktop. No other software is needed beyond what a
 normal GNOME install already has (NetworkManager, libsoup, gjs).
 
+![The top bar in the three styles: colour-coded numbers, text with labels, and small bars with the AI ring](docs/screenshots/panel.png)
+
+| System monitor | AI | Network |
+|---|---|---|
+| ![System monitor menu with CPU, GPU and memory graphs, disk, sensors and processes](docs/screenshots/system.png) | ![AI menu with Claude and ChatGPT limits, today's tokens and quick launch](docs/screenshots/ai.png) | ![Network menu with Wi-Fi details, public IP behind a VPN, DNS leak check and speed test](docs/screenshots/network.png) |
+
+| Share Wi-Fi by QR code | Preferences |
+|---|---|
+| ![Wi-Fi band and DNS menus, speed test result and a Wi-Fi QR code](docs/screenshots/network-qr.png) | ![Preferences window, Top bar page](docs/screenshots/prefs.png) |
+
+<sub>Screenshots use example network data (documentation IP ranges, a demo Wi-Fi name and password); system and AI values are live. Regenerate with `tools/screenshots.sh`.</sub>
+
 ## What it shows
 
 **System monitor** — CPU, GPU, RAM and temperature in the bar (as text,
@@ -81,6 +93,7 @@ to `tools/translations.py` (or edit `po/<lang>.po` directly) and run:
 
 ## Development
 
+`tools/screenshots.sh` regenerates the README screenshots (demo network data).
 `tools/test-nested.sh [out-dir] [language]` runs the extension in a nested
 GNOME Shell (needs `mutter-devkit`) with throw-away settings, and saves
 screenshots of the bar in every style and of every menu.
