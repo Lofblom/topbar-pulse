@@ -35,19 +35,19 @@ function claudeDir() {
 // The credentials keep the tier the token was minted with; the CLI's profile
 // is refreshed against the account, so its tier is asked first. The plan
 // leads and the multiplier qualifies it ("Max 5x", "Team 5x").
-function claudeProfileTier() {
+async function claudeProfileTier(cancellable) {
     const dir = claudeDir();
     const legacy = GLib.build_filenamev([dir, '.config.json']);
     const isDefault = !GLib.getenv('CLAUDE_CONFIG_DIR');
     const path = GLib.file_test(legacy, GLib.FileTest.EXISTS) ? legacy
         : isDefault ? GLib.build_filenamev([GLib.get_home_dir(), '.claude.json'])
             : GLib.build_filenamev([dir, '.claude.json']);
-    const acc = readJson(path)?.oauthAccount ?? {};
+    const acc = (await readJson(path, cancellable))?.oauthAccount ?? {};
     return String(acc.userRateLimitTier || acc.organizationRateLimitTier || '');
 }
 
-function claudePlan(o) {
-    let tier = claudeProfileTier();
+async function claudePlan(o, cancellable) {
+    let tier = await claudeProfileTier(cancellable);
     if (!/max_\d+x/i.test(tier))
         tier = String(o.rateLimitTier ?? '');
     const sub = String(o.subscriptionType ?? '');
@@ -68,10 +68,10 @@ function windowWord(kind) {
 }
 
 export async function claudeUsage(session, cancellable) {
-    const creds = readJson(GLib.build_filenamev([claudeDir(), '.credentials.json']))?.claudeAiOauth;
+    const creds = (await readJson(GLib.build_filenamev([claudeDir(), '.credentials.json']), cancellable))?.claudeAiOauth;
     if (!creds?.accessToken)
         return null;
-    const plan = claudePlan(creds);
+    const plan = await claudePlan(creds, cancellable);
     // Only Claude Code refreshes its own token; using a stale one would fail.
     if (creds.expiresAt && creds.expiresAt < Date.now())
         return {plan, limits: [], stale: true, note: _('Sign-in has expired. Start Claude Code once to renew it.')};
@@ -143,7 +143,7 @@ function codexWindowTitle(mins) {
 
 // Ask the Codex CLI's own app-server (JSON-RPC over stdio) for the limits.
 export async function codexUsage(cancellable) {
-    const auth = readJson(GLib.build_filenamev([codexHome(), 'auth.json']));
+    const auth = await readJson(GLib.build_filenamev([codexHome(), 'auth.json']), cancellable);
     const codex = findProgram('codex');
     if (!auth || !codex)
         return null;

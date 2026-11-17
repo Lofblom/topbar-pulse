@@ -14,7 +14,7 @@ import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import {gettext as _} from 'resource:///org/gnome/shell/extensions/extension.js';
 
 import {
-    read, readNum, exists, listDir, natural, decimal, fmtBytes, fmtRate, clamp01,
+    isCancelled, read, readNum, exists, listDir, natural, decimal, fmtBytes, fmtRate, clamp01,
     label, vbox, hbox, Meter, kvRow, findProgram, openInTerminal, notifyError,
 } from './util.js';
 
@@ -41,14 +41,22 @@ class Graph {
         this.data = [];
         this.color = color;
         this.actor = new St.DrawingArea({style_class: 'tp-graph', x_expand: true});
-        this.actor.connect('repaint', a => this._paint(a));
+        this._repaintId = this.actor.connect('repaint', a => this._paint(a));
+    }
+
+    destroy() {
+        if (this._repaintId)
+            this.actor.disconnect(this._repaintId);
+        this._repaintId = 0;
+        this.actor.destroy();
+        this.actor = null;
     }
 
     push(v) {
         this.data.push(v);
         if (this.data.length > HISTORY)
             this.data.shift();
-        if (this.actor.mapped)
+        if (this.actor?.mapped)
             this.actor.queue_repaint();
     }
 
@@ -86,12 +94,20 @@ class CoreBars {
     constructor() {
         this.values = [];
         this.actor = new St.DrawingArea({style_class: 'tp-cores', x_expand: true});
-        this.actor.connect('repaint', a => this._paint(a));
+        this._repaintId = this.actor.connect('repaint', a => this._paint(a));
+    }
+
+    destroy() {
+        if (this._repaintId)
+            this.actor.disconnect(this._repaintId);
+        this._repaintId = 0;
+        this.actor.destroy();
+        this.actor = null;
     }
 
     set(values) {
         this.values = values;
-        if (this.actor.mapped)
+        if (this.actor?.mapped)
             this.actor.queue_repaint();
     }
 
@@ -121,7 +137,7 @@ class CoreBars {
 
 // ------------------------------------------------------ hardware discovery
 
-function discoverHardware() {
+async function discoverHardware(c) {
     const hw = {
         cpuModel: '',
         cpuTemp: null,
@@ -132,43 +148,43 @@ function discoverHardware() {
         gpu: null,
     };
 
-    const cpuinfo = read('/proc/cpuinfo') ?? '';
+    const cpuinfo = await read('/proc/cpuinfo', c) ?? '';
     const m = cpuinfo.match(/^model name\s*:\s*(.+)$/m);
     if (m)
         hw.cpuModel = m[1].replace(/\((R|TM)\)/g, '').replace(/\s+/g, ' ').trim();
 
-    for (const c of listDir('/sys/devices/system/cpu').filter(n => /^cpu\d+$/.test(n))) {
-        const p = `/sys/devices/system/cpu/${c}/cpufreq/scaling_cur_freq`;
+    for (const cpu of (await listDir('/sys/devices/system/cpu', c)).filter(n => /^cpu\d+$/.test(n))) {
+        const p = `/sys/devices/system/cpu/${cpu}/cpufreq/scaling_cur_freq`;
         if (exists(p))
             hw.freqPaths.push(p);
     }
 
-    for (const h of listDir('/sys/class/hwmon').sort(natural)) {
+    for (const h of (await listDir('/sys/class/hwmon', c)).sort(natural)) {
         const base = `/sys/class/hwmon/${h}`;
-        const name = (read(`${base}/name`) ?? '').trim();
+        const name = (await read(`${base}/name`, c) ?? '').trim();
         if (!hw.cpuTemp && ['coretemp', 'k10temp', 'zenpower', 'cpu_thermal'].includes(name))
             hw.cpuTemp = `${base}/temp1_input`;
         if (!hw.nvmeTemp && name === 'nvme')
             hw.nvmeTemp = `${base}/temp1_input`;
-        const fans = listDir(base).filter(f => /^fan\d+_input$/.test(f)).sort(natural);
+        const fans = (await listDir(base, c)).filter(f => /^fan\d+_input$/.test(f)).sort(natural);
         if (!hw.fans.length)
             hw.fans = fans.map(f => `${base}/${f}`);
     }
 
-    for (const ps of listDir('/sys/class/power_supply').sort(natural)) {
+    for (const ps of (await listDir('/sys/class/power_supply', c)).sort(natural)) {
         const base = `/sys/class/power_supply/${ps}`;
-        if ((read(`${base}/type`) ?? '').trim() === 'Battery')
+        if ((await read(`${base}/type`, c) ?? '').trim() === 'Battery')
             hw.batteries.push(base);
     }
 
-    for (const c of listDir('/sys/class/drm').filter(n => /^card\d+$/.test(n)).sort(natural)) {
-        const base = `/sys/class/drm/${c}`;
+    for (const card of (await listDir('/sys/class/drm', c)).filter(n => /^card\d+$/.test(n)).sort(natural)) {
+        const base = `/sys/class/drm/${card}`;
         let driver = '';
         try {
             driver = GLib.path_get_basename(GLib.file_read_link(`${base}/device/driver`));
         } catch {}
         if (exists(`${base}/device/gpu_busy_percent`)) {
-            const hwmon = listDir(`${base}/device/hwmon`)[0];
+            const hwmon = (await listDir(`${base}/device/hwmon`, c))[0];
             hw.gpu = {
                 kind: 'busy', driver,
                 busy: `${base}/device/gpu_busy_percent`,
@@ -181,7 +197,7 @@ function discoverHardware() {
                 kind: 'idle', driver,
                 idle: `${base}/gt/gt0/rc6_residency_ms`,
                 freq: `${base}/gt_act_freq_mhz`,
-                maxFreq: readNum(`${base}/gt_max_freq_mhz`),
+                maxFreq: await readNum(`${base}/gt_max_freq_mhz`, c),
             };
         } else if (exists(`${base}/device/tile0/gt0/gtidle/idle_residency_ms`)) {
             const gt = `${base}/device/tile0/gt0`;
@@ -189,7 +205,7 @@ function discoverHardware() {
                 kind: 'idle', driver,
                 idle: `${gt}/gtidle/idle_residency_ms`,
                 freq: `${gt}/freq0/act_freq`,
-                maxFreq: readNum(`${gt}/freq0/max_freq`),
+                maxFreq: await readNum(`${gt}/freq0/max_freq`, c),
             };
         } else if (driver === 'nvidia') {
             hw.gpu = {kind: 'nvidia', driver};
@@ -211,7 +227,7 @@ class SystemIndicator extends PanelMenu.Button {
         this._barValues = {};
         this.add_style_class_name('tp-compact');
         this._cancellable = new Gio.Cancellable();
-        this._hw = discoverHardware();
+        this._hw = null;
         this._prev = null;
         this._prevProcs = null;
         this._nvidia = null;
@@ -221,7 +237,7 @@ class SystemIndicator extends PanelMenu.Button {
         this._iconActor = new St.Icon({icon_name: 'utilities-system-monitor-symbolic', style_class: 'system-status-icon'});
         box.add_child(this._iconActor);
         this._miniBars = new St.DrawingArea({style_class: 'tp-minibars', y_align: Clutter.ActorAlign.CENTER, visible: false});
-        this._miniBars.connect('repaint', a => this._paintMiniBars(a));
+        this._miniBarsId = this._miniBars.connect('repaint', a => this._paintMiniBars(a));
         box.add_child(this._miniBars);
         this._barLabels = {};
         for (const key of ['cpu', 'gpu', 'ram', 'temp']) {
@@ -232,24 +248,29 @@ class SystemIndicator extends PanelMenu.Button {
         }
         this.add_child(box);
         this._settingsId = this._settings.connect('changed', () => this._updateBar());
-
-        this._buildMenu();
-        this._findGpuName();
         this._drmFds = [];
         this._drmPrev = null;
+        this._start().catch(e => {
+            if (!isCancelled(e))
+                console.warn(`Topbar Pulse: system monitor: ${e.message}`);
+        });
+    }
+
+    async _start() {
+        this._hw = await discoverHardware(this._cancellable);
+        this._buildMenu();
+        this._findGpuName();
         this._scanDrmClients();
         this._drmTimer = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 10, () => {
             this._scanDrmClients();
             return GLib.SOURCE_CONTINUE;
         });
-
-        this.menu.connect('open-state-changed', (_m, open) => {
+        this._openId = this.menu.connect('open-state-changed', (_m, open) => {
             if (open) {
                 this._prevProcs = null;
                 this._sample();
             }
         });
-
         this._sample();
         this._timer = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, SAMPLE_SEC, () => {
             this._sample();
@@ -348,7 +369,7 @@ class SystemIndicator extends PanelMenu.Button {
         const style = st.get_string('system-style');
         const show = {
             cpu: st.get_boolean('system-show-cpu'),
-            gpu: st.get_boolean('system-show-gpu') && !!this._hw.gpu,
+            gpu: st.get_boolean('system-show-gpu') && !!this._hw?.gpu,
             ram: st.get_boolean('system-show-ram'),
             temp: st.get_boolean('system-show-temp'),
         };
@@ -429,14 +450,29 @@ class SystemIndicator extends PanelMenu.Button {
     }
 
     _sample() {
+        if (this._sampling)
+            return;
+        this._sampling = true;
+        this._sampleAsync().catch(e => {
+            if (!isCancelled(e))
+                console.warn(`Topbar Pulse: system sample: ${e.message}`);
+        }).finally(() => {
+            this._sampling = false;
+        });
+    }
+
+    async _sampleAsync() {
+        const c = this._cancellable;
         const now = GLib.get_monotonic_time() / 1e6;
+        const [stat, loadavg, meminfo, diskstats, netdev] = await Promise.all(
+            ['/proc/stat', '/proc/loadavg', '/proc/meminfo', '/proc/diskstats', '/proc/net/dev'].map(p => read(p, c)));
         const cur = {t: now, cpu: {}, gpuIdle: null, diskR: 0, diskW: 0, netRx: 0, netTx: 0};
         const prev = this._prev;
         const dt = prev ? now - prev.t : 0;
 
         // --- CPU
         const usage = {};
-        for (const l of (read('/proc/stat') ?? '').split('\n')) {
+        for (const l of (stat ?? '').split('\n')) {
             if (!l.startsWith('cpu'))
                 continue;
             const p = l.trim().split(/\s+/);
@@ -450,28 +486,28 @@ class SystemIndicator extends PanelMenu.Button {
         }
         const cpuPct = usage.cpu;
         const cores = Object.keys(usage).filter(k => k !== 'cpu').sort(natural).map(k => usage[k]);
-        const freqs = this._hw.freqPaths.map(readNum).filter(v => v !== null);
+        const freqs = (await Promise.all(this._hw.freqPaths.map(p => readNum(p, c)))).filter(v => v !== null);
         const freqGHz = freqs.length ? freqs.reduce((a, b) => a + b, 0) / freqs.length / 1e6 : null;
-        const cpuTemp = readNum(this._hw.cpuTemp);
-        const load = (read('/proc/loadavg') ?? '').split(' ').slice(0, 3).map(Number);
+        const cpuTemp = await readNum(this._hw.cpuTemp, c);
+        const load = (loadavg ?? '').split(' ').slice(0, 3).map(Number);
 
         // --- GPU
         const gpu = this._hw.gpu;
         let gpuPct = null, gpuDetail = '';
         if (gpu?.kind === 'busy') {
-            gpuPct = readNum(gpu.busy);
+            gpuPct = await readNum(gpu.busy, c);
             const parts = [];
-            const t = readNum(gpu.temp);
+            const t = await readNum(gpu.temp, c);
             if (t !== null)
                 parts.push(`${Math.round(t / 1000)} °C`);
-            const vu = readNum(gpu.vramUsed), vt = readNum(gpu.vramTotal);
+            const [vu, vt] = await Promise.all([readNum(gpu.vramUsed, c), readNum(gpu.vramTotal, c)]);
             if (vu !== null && vt)
                 parts.push(`VRAM ${decimal(vu / 2 ** 30)} / ${decimal(vt / 2 ** 30)} GB`);
             gpuDetail = parts.join(' · ');
         } else if (gpu?.kind === 'idle') {
             // Actual busy time per engine (render, video, …) summed over every
             // client, from /proc/<pid>/fdinfo – the source intel_gpu_top/nvtop use.
-            const engines = this._sampleDrmEngines(dt);
+            const engines = await this._sampleDrmEngines(dt);
             if (engines) {
                 gpuPct = Math.max(0, ...Object.values(engines));
                 const names = {render: _('3D'), video: _('Video'), 'video-enhance': _('Video enhance'), compute: _('Compute'), copy: _('Copy')};
@@ -480,7 +516,7 @@ class SystemIndicator extends PanelMenu.Button {
                     .map(([k, v]) => `${names[k] ?? k} ${Math.round(v)} %`);
                 gpuDetail = busy.join(' · ');
             }
-            const f = readNum(gpu.freq);
+            const f = await readNum(gpu.freq, c);
             if (f !== null)
                 gpuDetail = [gpuDetail, gpu.maxFreq ? `${Math.round(f)} / ${Math.round(gpu.maxFreq)} MHz` : `${Math.round(f)} MHz`].filter(Boolean).join(' · ');
         } else if (gpu?.kind === 'nvidia') {
@@ -494,7 +530,7 @@ class SystemIndicator extends PanelMenu.Button {
 
         // --- Memory
         const mi = {};
-        for (const l of (read('/proc/meminfo') ?? '').split('\n')) {
+        for (const l of (meminfo ?? '').split('\n')) {
             const m = l.match(/^(\w+):\s+(\d+)/);
             if (m)
                 mi[m[1]] = Number(m[2]);
@@ -504,14 +540,14 @@ class SystemIndicator extends PanelMenu.Button {
         const swapUsed = (mi.SwapTotal ?? 0) - (mi.SwapFree ?? 0);
 
         // --- Disk and network (counters)
-        for (const l of (read('/proc/diskstats') ?? '').split('\n')) {
+        for (const l of (diskstats ?? '').split('\n')) {
             const p = l.trim().split(/\s+/);
             if (p.length > 9 && /^(nvme\d+n\d+|sd[a-z]+|vd[a-z]+|mmcblk\d+)$/.test(p[2])) {
                 cur.diskR += Number(p[5]) * 512;
                 cur.diskW += Number(p[9]) * 512;
             }
         }
-        for (const l of (read('/proc/net/dev') ?? '').split('\n').slice(2)) {
+        for (const l of (netdev ?? '').split('\n').slice(2)) {
             const [name, rest] = l.split(':');
             if (!rest)
                 continue;
@@ -524,6 +560,9 @@ class SystemIndicator extends PanelMenu.Button {
         }
 
         this._prev = cur;
+
+        if (c.is_cancelled())
+            return;
 
         // --- Panel
         if (cpuPct !== undefined)
@@ -578,11 +617,14 @@ class SystemIndicator extends PanelMenu.Button {
         }
 
         try {
-            const info = Gio.File.new_for_path('/').query_filesystem_info('filesystem::size,filesystem::free', null);
+            const info = await Gio.File.new_for_path('/').query_filesystem_info_async('filesystem::size,filesystem::free', GLib.PRIORITY_DEFAULT, c);
             const size = info.get_attribute_uint64('filesystem::size');
             const free = info.get_attribute_uint64('filesystem::free');
             this._diskMeter.set((size - free) / size, '', `${fmtBytes(size - free)} / ${fmtBytes(size)}`);
-        } catch {}
+        } catch (e) {
+            if (isCancelled(e))
+                throw e;
+        }
 
         if (prev && dt > 0) {
             this._diskRate.text = _('Disk: read %s · write %s').format(fmtRate((cur.diskR - prev.diskR) / dt), fmtRate((cur.diskW - prev.diskW) / dt));
@@ -590,29 +632,30 @@ class SystemIndicator extends PanelMenu.Button {
         }
 
         if (this._sensors)
-            this._renderSensors();
+            await this._renderSensors();
 
-        this._renderProcs(now, mi.MemTotal ?? 0, Math.max(1, cores.length));
+        await this._renderProcs(now, mi.MemTotal ?? 0, Math.max(1, cores.length));
     }
 
-    _renderSensors() {
+    async _renderSensors() {
+        const c = this._cancellable;
         const rows = [];
-        this._hw.fans.forEach((p, i) => {
-            const rpm = readNum(p);
+        const rpms = await Promise.all(this._hw.fans.map(p => readNum(p, c)));
+        rpms.forEach((rpm, i) => {
             if (rpm !== null)
                 rows.push([this._hw.fans.length > 1 ? _('Fan %d').format(i + 1) : _('Fan'), `${rpm} rpm`]);
         });
-        const nvme = readNum(this._hw.nvmeTemp);
+        const nvme = await readNum(this._hw.nvmeTemp, c);
         if (nvme !== null)
             rows.push(['NVMe', `${Math.round(nvme / 1000)} °C`]);
         for (const b of this._hw.batteries) {
-            const cap = readNum(`${b}/capacity`);
-            const status = (read(`${b}/status`) ?? '').trim();
-            let watts = readNum(`${b}/power_now`);
-            if (watts === null) {
-                const c = readNum(`${b}/current_now`), v = readNum(`${b}/voltage_now`);
-                watts = c !== null && v !== null ? c * v / 1e6 : null;
-            }
+            const [cap, statusText, power, current, voltage] = await Promise.all([
+                readNum(`${b}/capacity`, c), read(`${b}/status`, c), readNum(`${b}/power_now`, c),
+                readNum(`${b}/current_now`, c), readNum(`${b}/voltage_now`, c)]);
+            const status = (statusText ?? '').trim();
+            let watts = power;
+            if (watts === null)
+                watts = current !== null && voltage !== null ? current * voltage / 1e6 : null;
             const st = {Charging: _('charging'), Discharging: _('discharging'), Full: _('full'), 'Not charging': _('not charging')}[status] ?? status.toLowerCase();
             let text = `${cap ?? '?'} % · ${st}`;
             if (watts)
@@ -625,17 +668,18 @@ class SystemIndicator extends PanelMenu.Button {
         }
     }
 
-    _renderProcs(now, memTotalKb, ncpu) {
+    async _renderProcs(now, memTotalKb, ncpu) {
+        const c = this._cancellable;
         const cur = new Map();
         const list = [];
         const prev = this._prevProcs;
         const dt = prev ? now - prev.t : 0;
-        for (const pid of listDir('/proc')) {
-            if (!/^\d+$/.test(pid))
-                continue;
-            const t = read(`/proc/${pid}/stat`);
+        const pids = (await listDir('/proc', c)).filter(pid => /^\d+$/.test(pid));
+        const stats = await Promise.all(pids.map(pid => read(`/proc/${pid}/stat`, c)));
+        pids.forEach((pid, i) => {
+            const t = stats[i];
             if (!t)
-                continue;
+                return;
             const close = t.lastIndexOf(')');
             const comm = t.slice(t.indexOf('(') + 1, close);
             const rest = t.slice(close + 2).split(' ');
@@ -647,7 +691,7 @@ class SystemIndicator extends PanelMenu.Button {
                 const pct = 100 * (ticks - before) / CLK_TCK / dt / ncpu;
                 list.push({comm, pct, rssKb});
             }
-        }
+        });
         this._prevProcs = {t: now, ticks: cur};
 
         this._procBox.destroy_all_children();
@@ -684,10 +728,10 @@ class SystemIndicator extends PanelMenu.Button {
     }
 
     // Busy share (0–100) per GPU engine since the previous sample.
-    _sampleDrmEngines(dt) {
+    async _sampleDrmEngines(dt) {
         const clients = new Map();
-        for (const path of this._drmFds) {
-            const t = read(path);
+        const texts = await Promise.all(this._drmFds.map(p => read(p, this._cancellable)));
+        for (const t of texts) {
             if (!t)
                 continue;
             const id = t.match(/^drm-client-id:\s*(\d+)/m);
@@ -731,6 +775,15 @@ class SystemIndicator extends PanelMenu.Button {
         if (this._settingsId)
             this._settings.disconnect(this._settingsId);
         this._settingsId = 0;
+        if (this._openId)
+            this.menu.disconnect(this._openId);
+        this._openId = 0;
+        if (this._miniBarsId)
+            this._miniBars.disconnect(this._miniBarsId);
+        this._miniBarsId = 0;
+        for (const g of [this._cpuGraph, this._gpuGraph, this._ramGraph, this._cores])
+            g?.destroy();
+        this._cpuGraph = this._gpuGraph = this._ramGraph = this._cores = null;
         super.destroy();
     }
 });

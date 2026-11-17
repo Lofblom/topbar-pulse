@@ -13,6 +13,10 @@ Gio._promisify(Gio.Subprocess.prototype, 'communicate_utf8_async');
 Gio._promisify(Gio.Subprocess.prototype, 'wait_async');
 Gio._promisify(Gio.DataInputStream.prototype, 'read_line_async');
 Gio._promisify(Gio.File.prototype, 'load_contents_async');
+Gio._promisify(Gio.File.prototype, 'enumerate_children_async');
+Gio._promisify(Gio.File.prototype, 'query_filesystem_info_async');
+Gio._promisify(Gio.FileEnumerator.prototype, 'next_files_async');
+Gio._promisify(Gio.FileEnumerator.prototype, 'close_async');
 Gio._promisify(Gio.InputStream.prototype, 'read_bytes_async');
 Gio._promisify(Gio.OutputStream.prototype, 'write_all_async');
 
@@ -87,27 +91,33 @@ export function findProgram(name) {
 
 // ------------------------------------------------------------------ files
 
-export function read(path) {
+// All file access is asynchronous so GNOME Shell never waits on a file.
+// A cancelled read rethrows (so callers stop touching destroyed widgets);
+// any other failure returns null.
+
+export async function read(path, cancellable = null) {
+    if (!path)
+        return null;
     try {
-        const [ok, bytes] = GLib.file_get_contents(path);
-        return ok ? decoder.decode(bytes) : null;
-    } catch {
+        const [bytes] = await Gio.File.new_for_path(path).load_contents_async(cancellable);
+        return decoder.decode(bytes);
+    } catch (e) {
+        if (isCancelled(e))
+            throw e;
         return null;
     }
 }
 
-export function readNum(path) {
-    if (!path)
-        return null;
-    const t = read(path);
+export async function readNum(path, cancellable = null) {
+    const t = await read(path, cancellable);
     if (t === null)
         return null;
     const n = Number(t.trim());
     return Number.isFinite(n) ? n : null;
 }
 
-export function readJson(path) {
-    const t = read(path);
+export async function readJson(path, cancellable = null) {
+    const t = await read(path, cancellable);
     if (t === null)
         return null;
     try {
@@ -121,16 +131,23 @@ export function exists(path) {
     return GLib.file_test(path, GLib.FileTest.EXISTS);
 }
 
-export function listDir(path) {
+export async function listDir(path, cancellable = null) {
     const out = [];
     try {
-        const en = Gio.File.new_for_path(path)
-            .enumerate_children('standard::name', Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
-        let info;
-        while ((info = en.next_file(null)) !== null)
-            out.push(info.get_name());
-        en.close(null);
-    } catch {}
+        const en = await Gio.File.new_for_path(path).enumerate_children_async('standard::name',
+            Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, GLib.PRIORITY_DEFAULT, cancellable);
+        for (;;) {
+            const infos = await en.next_files_async(200, GLib.PRIORITY_DEFAULT, cancellable);
+            if (infos.length === 0)
+                break;
+            for (const info of infos)
+                out.push(info.get_name());
+        }
+        await en.close_async(GLib.PRIORITY_DEFAULT, null);
+    } catch (e) {
+        if (isCancelled(e))
+            throw e;
+    }
     return out;
 }
 

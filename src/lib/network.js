@@ -217,6 +217,7 @@ class NetworkIndicator extends PanelMenu.Button {
         return active.find(d => d.get_active_connection()?.get_default()) ?? active[0] ?? null;
     }
 
+    // VPNs NetworkManager knows about (synchronous, from its cached state).
     _vpnState() {
         const names = [];
         for (const ac of this._client?.get_active_connections() ?? []) {
@@ -224,12 +225,15 @@ class NetworkIndicator extends PanelMenu.Button {
             if (ac.get_vpn() || type === 'wireguard' || type === 'vpn')
                 names.push(ac.get_id());
         }
-        for (const iface of listDir('/sys/class/net')) {
-            if (VPN_IFACE.test(iface) && readNum(`/sys/class/net/${iface}/carrier`) === 1 &&
-                !names.some(n => n === iface))
-                names.push(iface);
-        }
-        return [...new Set(names)];
+        return names;
+    }
+
+    // Interfaces made by VPN apps outside NetworkManager (Mullvad, Proton …).
+    async _vpnInterfaces() {
+        const c = this._cancellable;
+        const ifaces = (await listDir('/sys/class/net', c)).filter(i => VPN_IFACE.test(i));
+        const up = await Promise.all(ifaces.map(i => readNum(`/sys/class/net/${i}/carrier`, c)));
+        return ifaces.filter((_i, n) => up[n] === 1);
     }
 
     _collect() {
@@ -270,12 +274,29 @@ class NetworkIndicator extends PanelMenu.Button {
     }
 
     async _poll(open) {
-        this._status = this._collect();
-        const s = this._status;
+        if (this._polling)
+            return;
+        this._polling = true;
+        try {
+            await this._pollAsync(open);
+        } catch (e) {
+            if (!isCancelled(e))
+                console.warn(`Topbar Pulse: network poll: ${e.message}`);
+        } finally {
+            this._polling = false;
+        }
+    }
+
+    async _pollAsync(open) {
+        const c = this._cancellable;
+        const s = this._collect();
+        s.vpn = [...new Set([...s.vpn, ...await this._vpnInterfaces()])];
+        this._status = s;
 
         if (s.iface) {
-            const rx = readNum(`/sys/class/net/${s.iface}/statistics/rx_bytes`);
-            const tx = readNum(`/sys/class/net/${s.iface}/statistics/tx_bytes`);
+            const [rx, tx] = await Promise.all([
+                readNum(`/sys/class/net/${s.iface}/statistics/rx_bytes`, c),
+                readNum(`/sys/class/net/${s.iface}/statistics/tx_bytes`, c)]);
             const t = GLib.get_monotonic_time() / 1e6;
             const prev = this._traffic;
             this._traffic = {iface: s.iface, rx, tx, t};

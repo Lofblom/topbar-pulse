@@ -23,7 +23,7 @@ export default class TopbarPulseExtension extends Extension {
         this._indicators = {};
         this._ids = INDICATORS.map(([, key]) =>
             this._settings.connect(`changed::${key}`, () => this._sync()));
-        this._ids.push(this._settings.connect('changed::tighten-top-bar', () => this._syncTight()));
+        this._tightId = this._settings.connect('changed::tighten-top-bar', () => this._syncTight());
         this._sync();
         this._syncTight();
 
@@ -60,6 +60,9 @@ export default class TopbarPulseExtension extends Extension {
         for (const id of this._ids ?? [])
             this._settings.disconnect(id);
         this._ids = null;
+        if (this._tightId)
+            this._settings.disconnect(this._tightId);
+        this._tightId = 0;
         for (const ind of Object.values(this._indicators ?? {}))
             ind.destroy();
         this._indicators = null;
